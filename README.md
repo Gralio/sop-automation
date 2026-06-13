@@ -16,7 +16,9 @@ The blueprint for the automation solution is encoded in [spec.md](spec.md)
 
 ## Getting started
 
-The public repo contains the reusable pieces — the **worker** (`@sop/worker`), the **chat UI** (`ui/`), the **eval runner + LLM judge** (`tests/`), and the vendored browser tool (`vendor/browser-harness`, from [Browser Use](https://github.com/browser-use), MIT). The private mock NetSuite "gym" and the SOP/transcript dataset (`gym/`, `inputs/`) are gitignored, so a fresh clone points the worker at **your own** SOP catalog and **your own** target site.
+The public repo contains the reusable pieces — the **worker** (`@sop/worker`), the **chat UI** (`ui/`), the **eval runner + LLM judge** (`tests/`), the vendored browser tool (`vendor/browser-harness`, from [Browser Use](https://github.com/browser-use), MIT), and the mock NetSuite **gym** (`gym/`) so the eval is fully reproducible. The raw source dataset the gym was modelled from (`inputs/` — real transcripts, SOPs and screenshots) stays private. To automate your own work, point the worker at **your own** SOP catalog and **your own** target site (see *Point it at your own work* below).
+
+> **The worker never reads the gym.** It runs with `settingSources: []`, is sandboxed to `Read`/`Glob`/`Grep` plus its four MCP tools, has no imports from `gym/`, and receives only the ticket, attachments, `SOP_DIR` and `TARGET_URL`. The answer key in `gym/scenarios/` cannot leak into the agent — every run rediscovers the task from scratch.
 
 ### Prerequisites
 

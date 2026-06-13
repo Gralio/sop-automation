@@ -13,9 +13,10 @@ dist
 # Private dataset — NOT part of the public hackathon repo
 inputs
 
-# Private mock "gym" + SOP-derived eval scenarios — NOT public.
-# The reusable worker, UI, tests runner, and vendored harness ARE public.
-gym
+# The mock "gym" (mock NetSuite ERP + eval scenarios + fixtures) IS public so the
+# eval is reproducible. Only its build-time reference — distilled from the private
+# inputs/ — stays out of the public tree.
+gym/REFERENCE.md
 
 # Eval run artifacts (transcripts, screenshots, judge reports)
 runs

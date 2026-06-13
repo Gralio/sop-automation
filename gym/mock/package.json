@@ -1,0 +1,22 @@
+{
+  "name": "@sop/mock",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "PRIVATE adversarial mock NetSuite gym. Gitignored — not part of the public repo.",
+  "scripts": {
+    "dev": "vite dev --port 5180 --strictPort",
+    "build": "vite build",
+    "preview": "vite preview --port 5180 --strictPort",
+    "typecheck": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-node": "^5.2.12",
+    "@sveltejs/kit": "^2.15.0",
+    "@sveltejs/vite-plugin-svelte": "^5.0.3",
+    "svelte": "^5.19.0",
+    "svelte-check": "^4.1.4",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7"
+  }
+}
