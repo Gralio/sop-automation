@@ -1,0 +1,28 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Dependencies / build
+node_modules
+.svelte-kit
+build
+dist
+*.tsbuildinfo
+
+# Private dataset — NOT part of the public hackathon repo
+inputs
+
+# Private mock "gym" + SOP-derived eval scenarios — NOT public.
+# The reusable worker, UI, tests runner, and vendored harness ARE public.
+gym
+
+# Eval run artifacts (transcripts, screenshots, judge reports)
+runs
+.runs
+
+# OS / tooling
+.DS_Store
+.venv
+__pycache__
+*.pyc
