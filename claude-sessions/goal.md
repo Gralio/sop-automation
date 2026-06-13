@@ -1,15 +1,9 @@
-╭─── Claude Code v2.1.177 ─────────────────────────────────────────────────────╮
-│                                            │ Tips for getting started        │
-│             Welcome back Tymon!            │ ✔ Run /init to create a CLAUDE… │
-│                                            │ ─────────────────────────────── │
-│                   ▐▛███▜▌                  │ What's new                      │
-│                  ▝▜█████▛▘                 │ Session titles are now generat… │
-│                    ▘▘ ▝▝                   │ Added `footerLinksRegexes` set… │
-│                                            │ Improved Bedrock credential ca… │
-│   Opus 4.8 · API Usage Billing · Cloo AI   │ /release-notes for more         │
-│           ~/code/sop-automation            │                                 │
-╰──────────────────────────────────────────────────────────────────────────────╯
+ ▐▛███▜▌   Claude Code v2.1.177
+▝▜█████▛▘  Opus 4.8 · API Usage Billing
+  ▘▘ ▝▝    ~/code/sop-automation
 
+
+❯ /clear                                                                        
 
 ❯ /goal The goal is to implement, review, test and validate @spec.md. Use       
 dynamic workflows. Keep iterating until you can validate that the agent worker  
@@ -2152,7 +2146,7 @@ time.
   results. The full validation suite is running with adversity and the LLM
   judge. I'll report results as scenarios complete.
 
-✻ Brewed for 1h 31m 38s
+✻ Cooked for 1h 31m 38s
 
 ⏺ Monitor event: "full suite results (per-scenario PASS/FAIL + judge + final
 rate)"
@@ -2162,14 +2156,14 @@ rate)"
   the out-of-stock warning, and both approval gates. Now running excel-fill
   (reads the attached spreadsheet → creates the order). Awaiting its result.
 
-✻ Cogitated for 12s
+✻ Brewed for 12s
 
 ⏺ Monitor event: "b2b eval v4 coord-fix (SOP, approvals, msgs, errors, result)"
 
 ⏺ That was just a stale monitor (the old eval4 watcher) timing out — the active
   full-suite monitor is still running. Still awaiting the excel-fill result.
 
-✻ Sautéed for 7s
+✻ Baked for 7s
 
 ⏺ Monitor event: "full suite results (per-scenario PASS/FAIL + judge + final
 rate)"
@@ -2179,7 +2173,7 @@ rate)"
   running warranty-replacement (the zero-dollar Custom-price + LABOR line case).
   Awaiting result.
 
-✻ Worked for 11s
+✻ Baked for 11s
 
 ※ recap: Building and validating the SOP-automation system from spec.md. The full 6-scenario eval suite is running with adversity and the LLM judge; 2 of 6 passed so far (B2B order, Excel fill), warranty replacement now running. Next: read the final pass rate and fix any failures. (disable recaps in /config)
 ⏺ Monitor event: "full suite results (per-scenario PASS/FAIL + judge + final
@@ -2190,7 +2184,7 @@ rate)"
   the LABOR-FF1 line. 3/3. Now running rma-return (Authorize Return from an
   existing sales order). Awaiting result.
 
-✻ Sautéed for 7s
+✻ Cogitated for 7s
 
 ⏺ Monitor event: "full suite results (per-scenario PASS/FAIL + judge + final
 rate)"
@@ -2200,7 +2194,7 @@ rate)"
   must discover that a plain Save is rejected for matrix items and use Actions ▸
   Update Matrix). Awaiting result.
 
-✻ Brewed for 7s
+✻ Baked for 7s
 
 ⏺ Monitor event: "full suite results (per-scenario PASS/FAIL + judge + final
 rate)"
@@ -2240,7 +2234,7 @@ rate)"
   final suite rate, after which I'll add the same fix to the sales-order form's
   qty/rate inputs and re-run matrix-pricing.
 
-✻ Churned for 1m 17s
+✻ Baked for 1m 17s
 
 ⏺ Monitor event: "full suite results (per-scenario PASS/FAIL + judge + final
 rate)"
@@ -2301,14 +2295,14 @@ rate)"
   the prettier reinstall until no worker run is active (to avoid relinking
   node_modules mid-run).
 
-✻ Cogitated for 1m 5s
+✻ Crunched for 1m 5s
 
 ⏺ Monitor event: "matrix-pricing rerun (approval, result, value checks)"
 
 ⏺ Correct SOP selected (Item Pricing Update). Awaiting the value-check result
   with the select-on-focus fix in place.
 
-✻ Baked for 5s
+✻ Cogitated for 5s
 
 ✻ Claude resuming /loop wakeup (Jun 13 9:23pm)
 
@@ -2329,7 +2323,7 @@ rate)"
   is past the approval gate, setting all quantity breakpoints). I'll report the
   result when the monitor fires.
 
-✻ Baked for 37s
+✻ Crunched for 37s
 
 ⏺ Monitor event: "matrix-pricing rerun (approval, result, value checks)"
 
@@ -2417,14 +2411,14 @@ rate)"
   the result. (Deferring the prettier reinstall until no worker subprocess is
   active.)
 
-✻ Crunched for 2m 19s
+✻ Worked for 2m 19s
 
 ⏺ Monitor event: "matrix rerun v2 (verify fix): approvals, errors, result,
 values"
 
 ⏺ Awaiting the matrix v2 result.
 
-✻ Brewed for 9s
+✻ Cogitated for 9s
 
 ⏺ Monitor event: "matrix rerun v2 (verify fix): approvals, errors, result,
 values"
@@ -2437,7 +2431,7 @@ values"
 ⏺ Still pre-commit (worker is at the approval gate). Awaiting the post-submit
   result and verification.
 
-✻ Crunched for 13s
+✻ Sautéed for 13s
 
 ⏺ Monitor event: "matrix rerun v2 (verify fix): approvals, errors, result,
 values"
@@ -2457,7 +2451,7 @@ values"
 ⏺ The values are correct; the result line is still being written (judge
   running). Awaiting the PASS confirmation from the monitor.
 
-✻ Churned for 28s
+✻ Brewed for 28s
 
 ⏺ Monitor event: "matrix rerun v2 (verify fix): approvals, errors, result,
 values"
@@ -2512,7 +2506,7 @@ values"
 ⏺ Mock gym task complete. Now awaiting the final suite's per-scenario results
   from the monitor (b2b-order is running first).
 
-✻ Worked for 1m 54s
+✻ Cogitated for 1m 54s
 
 ⏺ Monitor event: "FINAL suite (per-scenario PASS/FAIL + final rate)"
 
@@ -2526,7 +2520,7 @@ values"
 ⏺ (Stale monitor timeout — ignoring.) Awaiting excel-fill result in the final
   suite.
 
-✻ Brewed for 4s
+✻ Baked for 4s
 
 ⏺ Monitor event: "FINAL suite (per-scenario PASS/FAIL + final rate)"
 
@@ -2546,13 +2540,13 @@ values"
   scenarios first (so I don't disturb the shared Chrome), then diagnose
   excel-fill with a state snapshot. Awaiting warranty/rma/matrix/image.
 
-✻ Brewed for 1m 36s
+✻ Sautéed for 1m 36s
 
 ⏺ Monitor event: "FINAL suite (per-scenario PASS/FAIL + final rate)"
 
 ⏺ Final suite: b2b ✅, excel ❌ (flaky — to diagnose), warranty ✅. Now
   rma-return. Awaiting.
-✻ Worked for 5s
+✻ Sautéed for 5s
 
 ⏺ Monitor event: "FINAL suite (per-scenario PASS/FAIL + final rate)"
 
@@ -2560,14 +2554,14 @@ values"
   select-on-focus + verification). b2b ✅, excel ❌, warranty ✅, rma ✅ so far.
   Awaiting matrix + image.
 
-✻ Churned for 5s
+✻ Sautéed for 5s
 
 ⏺ Monitor event: "FINAL suite (per-scenario PASS/FAIL + final rate)"
 
 ⏺ Final suite: matrix ✅ (the fix holds). b2b ✅, excel ❌, warranty ✅, rma ✅,
   matrix ✅. Now the last one, image-order. Awaiting.
 
-✻ Brewed for 6s
+✻ Sautéed for 6s
 
 ⏺ Monitor event: "full suite results (per-scenario PASS/FAIL + judge + final
 rate)"
@@ -2575,7 +2569,7 @@ rate)"
 ⏺ (Stale monitor timeout — ignoring.) Awaiting image-order result to close out
   the final suite.
 
-✻ Baked for 5s
+✻ Cooked for 5s
 
 ⏺ Monitor event: "FINAL suite (per-scenario PASS/FAIL + final rate)"
 
@@ -2687,7 +2681,7 @@ rate)"
   pattern, then re-run excel-fill with the fixes (check picks latest order +
   completeness guidance) to confirm it passes. Awaiting the diagnostic result.
 
-✻ Sautéed for 2m 40s
+✻ Baked for 2m 40s
 
 ✻ Claude resuming /loop wakeup (Jun 13 10:03pm)
 
@@ -2727,7 +2721,7 @@ rate)"
   with the completeness guidance to avoid partial/duplicate saves). Awaiting the
   result with the check fix in place.
 
-✻ Cooked for 1m 21s
+✻ Churned for 1m 21s
 
 ⏺ Monitor event: "excel-fill rerun with fixes (result + checks)"
 
@@ -2817,61 +2811,61 @@ rate)"
 
   The final clean suite is running. Awaiting per-scenario results.
 
-✻ Brewed for 2m 32s
+✻ Worked for 2m 32s
 
 ⏺ Monitor event: "excel-fill diagnostic result"
 
 ⏺ (Stale diagnostic monitor timeout — ignoring.) Awaiting the final suite's
   b2b-order result.
 
-✻ Crunched for 4s
+✻ Brewed for 4s
 
 ⏺ Monitor event: "FINAL suite (per-scenario PASS/FAIL + final rate)"
 
 ⏺ (Another stale monitor timeout — ignoring.) The active monitor (final clean
   suite #2) is still on the b2b-order scenario. Awaiting its result.
 
-✻ Worked for 5s
+✻ Brewed for 5s
 
 ⏺ Monitor event: "excel-fill rerun with fixes (result + checks)"
 
 ⏺ (Stale monitor — ignoring.) Awaiting the final clean suite's first real result
   (b2b-order).
 
-✻ Brewed for 5s
+✻ Baked for 5s
 
 ⏺ Monitor event: "FINAL clean suite #2 (per-scenario PASS/FAIL + rate)"
 
 ⏺ Final clean suite #2: b2b ✅ (1/6). Now excel-fill — the critical re-test in
   full-suite context with the fixes. Awaiting.
 
-✻ Cooked for 5s
+✻ Cogitated for 5s
 
 ⏺ Monitor event: "FINAL clean suite #2 (per-scenario PASS/FAIL + rate)"
 
 ⏺ excel-fill PASSED in the full-suite context (the fix holds). Final clean suite
   #2: b2b ✅, excel ✅ (2/6). Now warranty-replacement. Awaiting.
 
-✻ Churned for 5s
+✻ Cogitated for 5s
 
 ⏺ Monitor event: "FINAL clean suite #2 (per-scenario PASS/FAIL + rate)"
 
 ⏺ Final clean suite #2: warranty ✅ (3/6). Now rma-return. Awaiting.
 
-✻ Churned for 4s
+✻ Cogitated for 4s
 
 ⏺ Monitor event: "FINAL clean suite #2 (per-scenario PASS/FAIL + rate)"
 
 ⏺ Final clean suite #2: rma ✅ (4/6). Now matrix-pricing, then image-order.
   Awaiting.
 
-✻ Worked for 4s
+✻ Cooked for 4s
 
 ⏺ Monitor event: "FINAL clean suite #2 (per-scenario PASS/FAIL + rate)"
 ⏺ Final clean suite #2: matrix ✅ (5/6). Now the last scenario, image-order — if
   it passes, this is a clean 6/6. Awaiting.
 
-✻ Churned for 4s
+✻ Sautéed for 4s
 
 ⏺ Monitor event: "FINAL clean suite #2 (per-scenario PASS/FAIL + rate)"
 
@@ -2985,7 +2979,7 @@ rate)"
   The mock and UI dev servers are still running from this session if you want to
   try the chat UI now at http://127.0.0.1:5190.
 
-✻ Crunched for 1m 37s
+✻ Cogitated for 1m 37s
 
 ✻ Claude resuming /loop wakeup (Jun 13 10:42pm)
 
@@ -3029,4 +3023,934 @@ rate)"
   (:5180) and chat UI (:5190) are still running if you'd like to drive a ticket
   through the UI yourself.
 
-✻ Churned for 35s
+✻ Brewed for 35s
+
+❯ /export                                                                       
+  ⎿  Conversation exported to: /Users/tymon/code/sop-automation/2026-06-13-224625
+     -local-command-caveatcaveat-the-messages-below.txtgoa.md
+
+⏺ Monitor event: "FINAL clean suite #2 (per-scenario PASS/FAIL + rate)"
+
+※ recap: Goal: implement and validate the SOP-automation spec. It's done — the Sonnet worker passed all 6 SOP scenarios (100%) against the adversarial mock NetSuite, with the chat UI and LLM-judge eval working. Next: optionally try a ticket in the chat UI at localhost:5190. (disable recaps in /config)
+
+⏺ That was just the final suite's monitor timing out (the run already completed
+  at 6/6) — nothing to act on. The /export was a local command, no response
+  needed.
+
+  Everything is complete and validated: 6/6 (100%) on the final adversarial
+  suite with the LLM judge. No processes are running that need attention, and
+  I've ended the self-paced loop. Nothing further required from me.
+
+✔ Goal achieved (3h · 1 turn · 366.1k tokens) (ctrl+o to expand)
+
+✻ Brewed for 14s
+
+❯ one more fix: ensure the agent worker runs in a temporary working directory   
+  somewhere in /tmp, separate dir per run, so that it does not know where its   
+  own code is located. make it so that the SOPs from the input folder are       
+  copied for every run into the working directory so that the agent knows where 
+  they are and can read through them. (better isolation). run the tests and     
+  validate that they still work with this solution                              
+⏺ This is a focused isolation change with a concrete validation step. Let me
+  read the current worker entry, contract, and callers to edit precisely.
+
+  Read 1 file (ctrl+o to expand)
+
+❯ when running the final demo, i'd like the browser to be not-headless. give me an option to start the gym and the worker ui both in headed mode 
+
+⏺ Now the user added a second request: a headed-browser option for the demo. Let
+  me read the remaining files I need to edit (contract, eval runner, CLI), then
+  implement both changes.
+
+  Read 2 files (ctrl+o to expand)
+
+⏺ I have everything needed. Let me implement the isolation change. First the
+  contract — make workDir an optional base directory.
+
+⏺ Update(worker/src/contract.ts)
+  ⎿  Added 8 lines, removed 2 lines
+       91    targetUrl: string;
+       92    /** Browser control configuration. */
+       93    browser: BrowserConfig;
+       94 -  /** Scratch directory for screenshots, decoded attachments, 
+          -etc. */                                                       
+       95 -  workDir: string;                                            
+       94 +  /**                                                         
+       95 +   * Optional base directory under which the worker creates a 
+          +FRESH, isolated                                               
+       96 +   * per-run working directory. Defaults to the OS temp dir. T
+          +he worker's cwd is                                            
+       97 +   * that throwaway subdir (in temp), the SOP catalog is copie
+          +d into it, and the                                            
+       98 +   * worker never sees the caller's repository — so it has no 
+          +idea where its own                                            
+       99 +   * code lives or where the real SOP catalog is.             
+      100 +   */                                                         
+      101 +  workDir?: string;                                           
+      102    /** Driving model. Defaults to Sonnet (claude-sonnet-4-6). *
+           /
+      103    model?: string;
+      104    /** Hard cap on agent turns. */
+
+⏺ Now the core change in index.ts — create a fresh per-run temp dir, copy the
+  SOP catalog and attachments into it, and point the worker's cwd, allowed dirs,
+  prompt SOP path, and attachment paths at that neutral temp location.
+
+⏺ Update(worker/src/index.ts)
+  ⎿  Added 4 lines, removed 1 line
+       3   * translating the SDK message stream into normalized WorkerEve
+          nts and gating
+       4   * mutations through the host's approval callback.
+       5   */
+       6 +import { cp, mkdir, mkdtemp } from 'node:fs/promises';         
+       7 +import { tmpdir } from 'node:os';                              
+       8 +import { dirname, join } from 'node:path';                     
+       9  import { query } from '@anthropic-ai/claude-agent-sdk';
+      10  import type {
+      11    Options,
+     ...
+      13    SDKUserMessage,
+      14    PermissionResult,
+      15  } from '@anthropic-ai/claude-agent-sdk';
+      13 -import type { RunWorkerOptions, RunWorkerResult, WorkerHost } f
+         -rom './contract.js';                                           
+      16 +import type { Attachment, RunWorkerOptions, RunWorkerResult, Wo
+         +rkerHost } from './contract.js';                               
+      17  import { buildSystemPrompt } from './prompt.js';
+      18  import { buildInitialContent } from './attachments.js';
+      19  import {
+
+⏺ Update(worker/src/index.ts)
+  ⎿  Added 20 lines, removed 3 lines
+      53    opts: RunWorkerOptions,
+      54    host: WorkerHost,
+      55  ): Promise<RunWorkerResult> {
+      56 -  const attachments = opts.attachments ?? [];                  
+      56    const abortController = new AbortController();
+      57    if (opts.abortSignal) {
+      58      if (opts.abortSignal.aborted) abortController.abort();
+      59      else opts.abortSignal.addEventListener('abort', () => abort
+          Controller.abort(), { once: true });
+      60    }
+      61  
+      62 +  // ── Isolation ─────────────────────────────────────────────
+         +─────────────                                                  
+      63 +  // Run inside a fresh throwaway directory in the OS temp area
+         +, never the                                                    
+      64 +  // caller's repo. Copy the SOP catalog (and any attachments) 
+         +into it so the                                                 
+      65 +  // worker reads them from a neutral location and has no clue 
+         +where its own                                                  
+      66 +  // code — or the real SOP catalog — lives. cwd + the only rea
+         +dable directory                                                
+      67 +  // are this temp dir, so Read/Glob/Grep cannot escape it.    
+      68 +  const runDir = await mkdtemp(join(opts.workDir ?? tmpdir(), '
+         +sop-run-'));                                                   
+      69 +  const runSopDir = join(runDir, 'sops');                      
+      70 +  await cp(opts.sopDir, runSopDir, { recursive: true });       
+      71 +                                                               
+      72 +  const attachments: Attachment[] = [];                        
+      73 +  for (const a of opts.attachments ?? []) {                    
+      74 +    const dest = join(runDir, 'attachments', a.name);          
+      75 +    await mkdir(dirname(dest), { recursive: true });           
+      76 +    await cp(a.path, dest);                                    
+      77 +    attachments.push({ ...a, path: dest });                    
+      78 +  }                                                            
+      79 +                                                               
+      80    let sopPath: string | undefined;
+      81    const toolCtx: WorkerToolsContext = {
+      82      browser: opts.browser,
+      66 -    workDir: opts.workDir,                                     
+      67 -    sopDir: opts.sopDir,                                       
+      83 +    workDir: runDir,                                           
+      84 +    sopDir: runSopDir,                                         
+      85      host,
+      86      onSopSelected: (p) => {
+      87        sopPath = p;
+
+⏺ Now point the prompt's SOP dir, cwd, and allowed directories at the isolated
+  temp dir.
+
+⏺ Update(worker/src/index.ts)
+  ⎿  Added 5 lines, removed 3 lines
+       99    }
+      100  
+      101    const options: Options = {
+      102 -    systemPrompt: buildSystemPrompt({ sopDir: opts.sopDir, tar
+          -getUrl: opts.targetUrl }),                                    
+      102 +    systemPrompt: buildSystemPrompt({ sopDir: runSopDir, targe
+          +tUrl: opts.targetUrl }),                                      
+      103      model: opts.model ?? DEFAULT_MODEL,
+      104 -    cwd: opts.workDir,                                        
+      105 -    additionalDirectories: [opts.sopDir],                     
+      104 +    cwd: runDir,                                              
+      105 +    // The isolated temp dir is the ONLY place the worker can 
+          +read — it contains                                            
+      106 +    // the copied SOP catalog and attachments and nothing else
+          +.                                                             
+      107 +    additionalDirectories: [runDir],                          
+      108      maxTurns: opts.maxTurns ?? DEFAULT_MAX_TURNS,
+      109      // Keep the worker's context clean & generic: no user/proj
+           ect settings, no
+      110      // CLAUDE.md memory leakage, a tight built-in tool set.
+
+⏺ Now update the callers so none of them hand the worker a repo path. First the
+  eval runner.
+
+⏺ Update(tests/src/runEval.ts)
+  ⎿  Added 2 lines, removed 2 lines
+      78  
+      79  async function runScenario(scenario: Scenario): Promise<Scenari
+          oResult> {
+      80    const start = Date.now();
+      81 -  const workDir = join(cfg.workBase, scenario.id);             
+      82 -  await mkdir(workDir, { recursive: true });                   
+      81 +  // The worker isolates itself in a fresh OS-temp dir per run 
+         +(see runWorker) —                                              
+      82 +  // we deliberately do NOT hand it a path inside this repo.   
+      83    ensureChrome();
+      84    await resetMock(scenario.adversarial);
+      85  
+
+⏺ Update(tests/src/runEval.ts)
+  ⎿  Removed 1 line
+       97          attachments: resolveAttachments(scenario),
+       98          sopDir: cfg.sopDir,
+       99          targetUrl: cfg.mockUrl,
+      100 -        workDir,                                              
+      100          browser: { cdpUrl: cfg.cdpUrl, buName: cfg.buName, har
+           nessDir: cfg.harnessDir },
+      101          model: cfg.model,
+      102          maxTurns: scenario.maxTurns,
+
+⏺ cfg.workBase is now unused — remove it to avoid implying a repo working dir.
+
+⏺ Update(tests/src/runEval.ts)
+  ⎿  Removed 1 line
+      26    cdpUrl: process.env.CDP_URL ?? 'http://127.0.0.1:9222',
+      27    buName: process.env.BU_NAME ?? 'eval',
+      28    harnessDir: process.env.HARNESS_DIR ?? join(repoRoot, 'vendor
+          /browser-harness'),
+      29 -  workBase: process.env.WORK_DIR ?? join(repoRoot, '.runs'),   
+      29    scenarios: process.env.SCENARIOS ?? join(repoRoot, 'gym/scena
+          rios/index.ts'),
+      30    model: process.env.MODEL || undefined,
+      31    judge: process.env.JUDGE !== '0',
+
+⏺ Now the CLI — don't default workDir to the repo cwd.
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Update(worker/src/cli.ts)
+  ⎿  Added 2 lines, removed 1 line
+      112      attachments,
+      113      sopDir: String(args['sop-dir'] ?? ''),
+      114      targetUrl: String(args.url ?? ''),
+      115 -    workDir: String(args['work-dir'] ?? process.cwd()),       
+      115 +    // Omit by default — the worker makes its own isolated tem
+          +p dir per run.                                                
+      116 +    workDir: args['work-dir'] ? String(args['work-dir']) : und
+          +efined,                                                       
+      117      browser: {
+      118        cdpUrl: String(args['cdp-url'] ?? 'http://127.0.0.1:9222
+           '),
+      119        buName: String(args['bu-name'] ?? 'sop-worker'),
+
+⏺ Now the UI run manager — it no longer needs to create a workDir (the worker
+  self-isolates).
+
+⏺ Update(ui/src/lib/server/runManager.ts)
+  ⎿  Removed 2 lines
+       3   * WorkerEvents are buffered and fanned out to SSE subscribers,
+           and ask_approval
+       4   * is resolved by an HTTP callback correlated by approval id.
+       5   */
+       6 -import { mkdtemp } from 'node:fs/promises';                    
+       7 -import { tmpdir } from 'node:os';                              
+       6  import { join } from 'node:path';
+       7  import { randomUUID } from 'node:crypto';
+       8  import { runWorker } from '@sop/worker';
+
+⏺ Update(ui/src/lib/server/runManager.ts)  ⎿  Added 2 lines, removed 3 lines
+      77    }
+      78  
+      79    const cfg = targetConfig();
+      80 -  const workDir = await mkdtemp(join(tmpdir(), `sop-ui-${id}-`)
+         -);                                                             
+      80  
+      82 -  // Fire and forget; events stream as they happen.            
+      81 +  // Fire and forget; events stream as they happen. The worker 
+         +creates its own                                                
+      82 +  // isolated temp working directory per run.                  
+      83    void runWorker(
+      84      {
+      85        ticket,
+      86        attachments,
+      87        sopDir: cfg.sopDir,
+      88        targetUrl: cfg.targetUrl,
+      89 -      workDir,                                                 
+      89        browser: { cdpUrl: cfg.cdpUrl, buName: cfg.buName, harnes
+          sDir: cfg.harnessDir },
+      90        model: cfg.model,
+      91      },
+
+⏺ Now the headed-browser demo option. Let me read dev.sh and add a --headed
+  flag.
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Update(scripts/dev.sh)
+  ⎿  Added 10 lines, removed 1 line
+       3  # NetSuite gym, and the chat UI. Ctrl-C tears everything down.
+       4  #
+       5  #   scripts/dev.sh                 # headless worker Chrome
+       6 -#   CHROME_HEADLESS=0 scripts/dev.sh   # watch the worker drive
+         - the browser                                                   
+       6 +#   scripts/dev.sh --headed        # VISIBLE Chrome — watch the
+         + worker drive it                                               
+       7 +#   CHROME_HEADLESS=0 scripts/dev.sh   # same as --headed      
+       8  set -euo pipefail
+       9  ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+      10  cd "$ROOT"
+      11  
+      12 +# --headed (or headed) shows the worker's Chrome window; defaul
+         +t is headless.                                                 
+      13 +for arg in "$@"; do                                            
+      14 +  case "$arg" in                                               
+      15 +    --headed | headed) CHROME_HEADLESS=0 ;;                    
+      16 +    --headless | headless) CHROME_HEADLESS=1 ;;                
+      17 +  esac                                                         
+      18 +done                                                           
+      19 +                                                               
+      20  cleanup() {
+      21    echo "shutting down…"
+      22    [[ -n "${MOCK_PID:-}" ]] && kill "$MOCK_PID" 2>/dev/null || t
+          rue
+
+⏺ Update(scripts/dev.sh)
+  ⎿  Added 3 lines, removed 2 lines
+      25  }
+      26  trap cleanup EXIT INT TERM
+      27  
+      28 -echo "[1/3] starting dedicated Chrome on :9222 (headless=${CHRO
+         -ME_HEADLESS:-1})…"                                             
+      29 -CHROME_HEADLESS="${CHROME_HEADLESS:-1}" scripts/chrome.sh start
+      28 +HEADLESS="${CHROME_HEADLESS:-1}"                               
+      29 +echo "[1/3] starting dedicated Chrome on :9222 ($([[ "$HEADLESS
+         +" == 0 ]] && echo 'HEADED — visible window' || echo headless))…
+         +"                                                              
+      30 +CHROME_HEADLESS="$HEADLESS" scripts/chrome.sh start            
+      31  
+      32  echo "[2/3] starting mock NetSuite gym on :5180…"
+      33  pnpm --filter @sop/mock dev >/tmp/sop-mock.log 2>&1 &
+
+⏺ Both changes are in. Let me typecheck the worker, tests, and UI after the
+  edits.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ All typecheck clean. Let me format + lint, confirm the mock/Chrome are up,
+  then launch the full eval suite to validate (the user asked to run the tests).
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Format + lint clean (the file notes are prettier-only reformatting of the
+  mock). Servers up, no eval running. Let me launch the full validation suite
+  with the isolation change in place.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Monitor(isolation-validation suite (per-scenario PASS/FAIL + rate))
+  ⎿  Monitor started · task b9tfluq9l · timeout 2400s
+
+⏺ The suite is running. Let me directly verify the isolation property the user
+  asked for — inspect the live run directory to confirm the worker operates from
+  a fresh temp dir with the SOP catalog copied in (not a repo path).
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Monitor event: "isolation-validation suite (per-scenario PASS/FAIL + rate)"
+
+⏺ The glob errored (zsh nullglob); let me use find and account for the run
+  having just started.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Isolation verified at the filesystem level: the worker's run directory is
+  /var/folders/.../T/sop-run-Ai1rCN (the OS temp dir, outside the repo),
+  containing a fresh copy of all 29 SOPs in sops/. The worker has no path into
+  the repository. Now the eval (running) will confirm it can still perform the
+  tasks reading SOPs from there.
+
+  While the suite runs, let me adversarially review the isolation change for any
+  residual repo leak and correctness regressions, in parallel.
+
+⏺ Workflow(Adversarially review the worker temp-dir isolation change for
+          repo-path leaks and correctness regressions)
+  ⎿  /workflows to view dynamic workflow runs
+
+⏺ Both the validation suite and the adversarial isolation-review workflow are
+  running. Let me set a fallback wake-up for the long suite.
+
+⏺ Both changes are implemented and the validation is in flight:
+
+  1. Worker isolation (done + filesystem-verified): runWorker now creates a
+  fresh throwaway directory in the OS temp area per run (e.g.
+  /var/folders/.../T/sop-run-XXXX on macOS, /tmp/sop-run-XXXX on Linux), copies
+  the SOP catalog into <runDir>/sops/ and any attachments into
+  <runDir>/attachments/, and points the worker's cwd, its only readable
+  directory, the prompt's SOP path, and the attachment paths all at that temp
+  dir. The worker (no Bash; Read/Glob/Grep confined to the temp dir) cannot see
+  the repo or the real catalog location. I confirmed a live run dir sits outside
+  the repo with all 29 SOPs copied in. All callers (eval runner, CLI, UI
+  run-manager) were updated to stop handing it a repo path.
+
+  2. Headed demo option (done): scripts/dev.sh --headed (or CHROME_HEADLESS=0 
+  scripts/dev.sh) launches the worker's Chrome as a visible window so you can
+  watch it drive the gym during the demo, while you interact through the chat
+  UI; default stays headless.
+
+  Typecheck, lint, and format are all clean. Now running:
+  - The full 6-scenario eval suite (adversity + judge) to confirm the worker
+  still performs the tasks reading SOPs from the temp location — b2b-order is
+  underway; I'll report each result.
+  - A parallel adversarial review workflow checking for any residual repo-path
+  leak and correctness regressions.
+
+  I'll report the suite pass rate and the review findings as they land.
+
+✻ Worked for 7m 54s
+
+⏺ Dynamic workflow "Adversarially review the worker temp-dir isolation change
+for repo-path leaks and correctness regressions" completed · 1m 58s
+
+⏺ The adversarial review caught a real HIGH leak: the browser tool's
+  harnessEnv() spreads all of process.env into the harness subprocess, so the
+  worker could run os.environ/os.getcwd() (or read an error traceback) via the
+  browser tool and discover HARNESS_DIR/SOP_DIR/REPO_ROOT/PWD — defeating the
+  isolation (and exposing any secrets). The correctness review confirmed the
+  core change is sound. Let me fix the leak: pass a minimal sanitized env, run
+  the subprocess from a neutral cwd, and redact repo paths from returned output.
+  Let me read the current file.
+  Read 1 file (ctrl+o to expand)
+
+⏺ The core isolation change is sound; I'll fix the leak vector. Let me harden
+  browserHarness.ts: a minimal sanitized env (no repo vars, no secrets), a
+  neutral subprocess cwd, and redaction of harness/repo paths from any returned
+  output.
+
+⏺ Update(worker/src/browserHarness.ts)
+  ⎿  Added 2 lines
+       9   */
+      10  import { execFile } from 'node:child_process';
+      11  import { readFile } from 'node:fs/promises';
+      12 +import { tmpdir } from 'node:os';                              
+      13 +import { dirname } from 'node:path';                           
+      14  import type { BrowserConfig } from './contract.js';
+      15  
+      16  const SHOT_MARKER = '__BH_SHOT__:';
+
+⏺ Update(worker/src/browserHarness.ts)
+  ⎿  Added 29 lines, removed 8 lines
+      51    args: string[],
+      52    env: NodeJS.ProcessEnv,
+      53    timeoutMs: number,
+      54 +  cwd: string,                                                 
+      55  ): Promise<{ stdout: string; stderr: string; code: number }> {
+      56    return new Promise((resolve) => {
+      57      execFile(
+      58        'uv',
+      59        args,
+      59 -      { env, timeout: timeoutMs, maxBuffer: 32 * 1024 * 1024 },
+      60 +      { env, cwd, timeout: timeoutMs, maxBuffer: 32 * 1024 * 10
+         +24 },                                                          
+      61        (err, stdout, stderr) => {
+      62          const code =
+      63            err && typeof (err as { code?: unknown }).code === 'n
+          umber'
+     ...
+       71    });
+       72  }
+       73  
+       74 +// Only a minimal, neutral set of variables reaches the browse
+          +r-harness                                                     
+       75 +// subprocess. The worker can run arbitrary Python through the
+          + browser tool, so                                             
+       76 +// it must NOT inherit the parent's env (which holds repo path
+          +s like HARNESS_DIR                                            
+       77 +// / SOP_DIR / REPO_ROOT / PWD, plus any API keys) — that woul
+          +d let it read its                                             
+       78 +// own location via os.environ and defeat the temp-dir isolati
+          +on.                                                           
+       79 +const SAFE_ENV_KEYS = ['PATH', 'HOME', 'TMPDIR', 'LANG', 'LC_A
+          +LL', 'LC_CTYPE', 'USER', 'LOGNAME'];                          
+       80 +                                                              
+       81  function harnessEnv(browser: BrowserConfig): NodeJS.ProcessEnv
+            {
+       74 -  return {                                                    
+       75 -    ...process.env,                                           
+       76 -    BU_CDP_URL: browser.cdpUrl,                               
+       77 -    BU_NAME: browser.buName,                                  
+       78 -    // Domain skills off — the worker must learn the site gene
+          -rically.                                                      
+       79 -    BH_DOMAIN_SKILLS: '0',                                    
+       80 -  };                                                          
+       82 +  const env: NodeJS.ProcessEnv = {};                          
+       83 +  for (const k of SAFE_ENV_KEYS) {                            
+       84 +    if (process.env[k] !== undefined) env[k] = process.env[k];
+       85 +  }                                                           
+       86 +  env.BU_CDP_URL = browser.cdpUrl;                            
+       87 +  env.BU_NAME = browser.buName;                               
+       88 +  // Domain skills off — the worker must learn the site generi
+          +cally.                                                        
+       89 +  env.BH_DOMAIN_SKILLS = '0';                                 
+       90 +  return env;                                                 
+       91  }
+       92  
+       93 +/** Redact the vendored harness / repo paths from any text ret
+          +urned to the                                                  
+       94 + * worker (e.g. Python tracebacks reference files under the ha
+          +rness checkout),                                              
+       95 + * so the worker can't learn where its code lives even on erro
+          +rs. */                                                        
+       96 +function redactPaths(text: string, harnessDir: string): string
+          + {                                                            
+       97 +  const repoRoot = dirname(dirname(harnessDir)); // <repo>/ven
+          +dor/browser-harness -> <repo>                                 
+       98 +  let out = text;                                             
+       99 +  if (harnessDir) out = out.split(harnessDir).join('<harness>'
+          +);                                                            
+      100 +  if (repoRoot && repoRoot !== '.' && repoRoot !== '/') out = 
+          +out.split(repoRoot).join('<workspace>');                      
+      101 +  return out;                                                 
+      102 +}                                                             
+      103 +                                                              
+      104  /** Warm the uv venv + daemon so the first real tool call isn'
+           t slow. */
+      105  export async function warmUp(browser: BrowserConfig): Promise<
+           void> {
+      106    await runUv(
+
+⏺ Update(worker/src/browserHarness.ts)
+  ⎿  Added 4 lines
+      107      ['run', '--project', browser.harnessDir, 'browser-harness'
+           , '-c', 'print("warm")'],
+      108      harnessEnv(browser),
+      109      120_000,
+      110 +    tmpdir(),                                                 
+      111    );
+      112  }
+      113  
+     ...
+      121      ['run', '--project', opts.browser.harnessDir, 'browser-har
+           ness', '-c', code],
+      122      harnessEnv(opts.browser),
+      123      opts.timeoutMs ?? 120_000,
+      124 +    // Run from a neutral dir so the worker's os.getcwd() is i
+          +ts own temp world,                                            
+      125 +    // never the repo.                                        
+      126 +    opts.workDir || tmpdir(),                                 
+      127    );
+      128  
+      129    let shotPath: string | undefined;
+
+⏺ Now apply the path redaction to the returned text.
+
+⏺ Update(worker/src/browserHarness.ts)
+  ⎿  Added 1 line, removed 1 line
+      151  
+      152    const textParts = [kept.join('\n').trimEnd()];
+      153    if (stderr.trim()) textParts.push(`[stderr]\n${stderr.trim()
+           }`);
+      154 -  const text = textParts.filter(Boolean).join('\n\n') || '(no 
+          -output)';                                                     
+      154 +  const text = redactPaths(textParts.filter(Boolean).join('\n\
+          +n'), opts.browser.harnessDir) || '(no output)';               
+      155  
+      156    return { text, screenshotBase64, isError: exit !== 0 };
+      157  }
+
+⏺ Let me typecheck the worker, then validate that the minimal env + neutral cwd
+  doesn't break the harness — I'll test against a throwaway Chrome on a separate
+  port (9223) so I don't disturb the running eval on 9222.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ The minimal-env test passes cleanly: the harness connected and loaded the mock
+  (🟢 Apex / NetSuite), os.getcwd() is neutral (/, not the repo), and none of
+  SOP_DIR/HARNESS_DIR/REPO_ROOT/PWD/WORK_DIR are visible to the worker's Python.
+  (uv injects VIRTUAL_ENV, but its value is a harness path now redacted in
+  returned output.) Let me clean up the test Chrome and re-check quality gates.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Monitor event: "isolation-validation suite (per-scenario PASS/FAIL + rate)"
+
+⏺ Quality gates clean. The isolation suite is validating: b2b PASS (reads SOPs
+  from the temp copy), now excel-fill (validates an attachment copied into the
+  temp dir is readable). That run uses the pre-env-hardening build, so after it
+  finishes I'll do one confirmation run with the env-hardened browser tool.
+  Awaiting more results.
+
+✻ Churned for 13m 49s
+
+⏺ Monitor event: "isolation-validation suite (per-scenario PASS/FAIL + rate)"
+
+⏺ Isolation suite: b2b ✅, excel-fill ✅ (attachment read from the temp copy
+  works). Now warranty-replacement. Awaiting the rest.
+
+✻ Sautéed for 5s
+
+※ recap: Goal: validate the SOP worker after isolating it in a per-run temp dir (SOPs copied in) plus adding a headed-browser demo option. The validation suite is mid-run (excel-fill and b2b passed so far). Next: let it finish, then confirm the env-hardened browser tool with one clean run. (disable recaps in /config)
+
+⏺ Monitor event: "isolation-validation suite (per-scenario PASS/FAIL + rate)"
+
+⏺ Isolation suite: b2b ✅, excel ✅, warranty ✅ (3/6). Now rma-return. Awaiting
+  matrix + image.
+
+✻ Cooked for 4s
+
+⏺ Monitor event: "isolation-validation suite (per-scenario PASS/FAIL + rate)"
+
+⏺ Isolation suite: rma ✅ (4/6). Now matrix-pricing, then image-order. Awaiting.
+
+✻ Cogitated for 4s
+
+※ recap: You asked to isolate the worker in a per-run temp dir (SOPs copied in) plus a headed-demo option; both are done and typecheck-clean. The validation suite is at 4/6 passing; I'm waiting on the last two scenarios, then a quick confirmation run with the env-hardening fix.
+
+⏺ Monitor event: "isolation-validation suite (per-scenario PASS/FAIL + rate)"
+
+⏺ Isolation suite: matrix ✅ (5/6). Now the last scenario, image-order
+  (multimodal attachment from the temp copy). Awaiting the final result.
+✻ Brewed for 4s
+
+❯ ok we need to wrap up, skip the final scenario                                
+
+⏺ Wrapping up — let me stop the in-flight image-order run (no need to spend
+  tokens finishing it) and clean up the background monitors.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ 5/5 completed scenarios passed; image-order skipped per your call. Let me stop
+  the lingering monitor and wrap up.
+
+⏺ Stop Task
+  ⎿  tail -n +1 -f /tmp/evaliso.log | grep --line-buffered -E "^▶ |✅
+     PASS|❌ FAIL|✗ |judge:|=== .*passed|report:" · stopped
+
+⏺ Done. Both requested changes are implemented and validated.
+
+  1. Worker isolation in a temp dir (SOPs copied per run)
+
+  runWorker now, on every run, creates a fresh throwaway directory in the OS
+  temp area (/var/folders/.../T/sop-run-XXXX on macOS, /tmp/sop-run-XXXX on
+  Linux), copies the SOP catalog into <runDir>/sops/ and any attachments into
+  <runDir>/attachments/, and points the worker's cwd, its only readable 
+  directory, the prompt's SOP path, and the attachment paths all at that temp
+  dir. All three callers (eval runner, CLI, UI run-manager) were updated to stop
+  handing it any repo path.
+
+  I also ran an adversarial review of the change, which caught a real leak: the
+  browser tool was spreading the full process.env (and inheriting the repo cwd)
+  into its Python subprocess, so the worker could have read
+  HARNESS_DIR/SOP_DIR/REPO_ROOT/PWD (and any secrets) via
+  os.environ/os.getcwd(). Fixed it — the harness subprocess now gets a minimal 
+  sanitized env (no repo vars, no secrets), runs from a neutral cwd, and
+  harness/repo paths are redacted from any output (e.g. tracebacks) returned to
+  the worker.
+
+  Validation:
+  - Filesystem-verified the live run dir sits outside the repo with all 29 SOPs
+  copied in.
+  - Standalone harness test with the locked-down env: connected to the mock
+  fine, getcwd neutral, and none of the repo env vars visible.
+  - Re-ran the eval suite with the isolation change: 5/5 completed scenarios 
+  passed — b2b, excel-fill (attachment read from the temp copy), warranty, rma,
+  matrix — all reading SOPs from the temp location. image-order skipped per your
+  call.
+
+  One honesty note: the 5/5 suite ran with the dir-isolation change but just
+  before the env-hardening commit (I made that fix mid-run after the review
+  flagged it); the env-hardening was validated separately via the standalone
+  test above. If you want a single combined full-suite pass later, it's pnpm 
+  eval.
+
+  2. Headed demo option
+
+  scripts/dev.sh --headed (or CHROME_HEADLESS=0 scripts/dev.sh) brings up the
+  stack with a visible Chrome window so you can watch the worker drive the gym
+  while you interact through the chat UI; default stays headless.
+
+  Typecheck, lint, and format are all clean.
+
+✻ Brewed for 54s
+
+❯ [Image #1] pls fix, when i run `scripts/dev.sh --headed`                      
+  ⎿  [Image #1]
+
+⏺ Good catch — the bug: when the UI runs via pnpm --filter @sop/ui dev, the
+  process cwd is the ui/ directory, but targetConfig() derives the repo root
+  from process.cwd(), so it looked for ui/inputs/sops. Let me make the repo-root
+  resolution robust (walk up to find the workspace) and also set it explicitly
+  in dev.sh. Let me read the current run manager top.
+
+  Read 1 file (ctrl+o to expand)
+
+⏺ Update(ui/src/lib/server/runManager.ts)
+  ⎿  Added 2 lines, removed 1 line
+       3   * WorkerEvents are buffered and fanned out to SSE subscribers,
+           and ask_approval
+       4   * is resolved by an HTTP callback correlated by approval id.
+       5   */
+       6 -import { join } from 'node:path';                              
+       6 +import { existsSync } from 'node:fs';                          
+       7 +import { dirname, join } from 'node:path';                     
+       8  import { randomUUID } from 'node:crypto';
+       9  import { runWorker } from '@sop/worker';
+      10  import type {
+
+⏺ Update(ui/src/lib/server/runManager.ts)
+  ⎿  Added 23 lines, removed 1 line
+      34    model?: string;
+      35  }
+      36  
+      37 +/**                                                            
+      38 + * Resolve the repo root robustly. `pnpm --filter @sop/ui dev` 
+         +runs the server                                                
+      39 + * with cwd = the `ui/` package dir, so plain `process.cwd()` w
+         +ould point the                                                 
+      40 + * SOP/harness dirs at `ui/inputs/sops` etc. Walk up to the wor
+         +kspace root                                                    
+      41 + * (marked by pnpm-workspace.yaml or vendor/browser-harness) in
+         +stead.                                                         
+      42 + */                                                            
+      43 +function findRepoRoot(start: string): string {                 
+      44 +  let dir = start;                                             
+      45 +  for (let i = 0; i < 10; i++) {                               
+      46 +    if (                                                       
+      47 +      existsSync(join(dir, 'pnpm-workspace.yaml')) ||          
+      48 +      existsSync(join(dir, 'vendor', 'browser-harness'))       
+      49 +    ) {                                                        
+      50 +      return dir;                                              
+      51 +    }                                                          
+      52 +    const parent = dirname(dir);                               
+      53 +    if (parent === dir) break;                                 
+      54 +    dir = parent;                                              
+      55 +  }                                                            
+      56 +  return start;                                                
+      57 +}                                                              
+      58 +                                                               
+      59  export function targetConfig(): TargetConfig {
+      38 -  const repoRoot = process.env.SOP_REPO_ROOT ?? process.cwd(); 
+      60 +  const repoRoot = process.env.SOP_REPO_ROOT ?? findRepoRoot(pr
+         +ocess.cwd());                                                  
+      61    return {
+      62      targetUrl: process.env.TARGET_URL ?? 'http://127.0.0.1:5180
+          ',
+      63      sopDir: process.env.SOP_DIR ?? join(repoRoot, 'inputs/sops'
+          ),
+
+⏺ Now also set SOP_REPO_ROOT explicitly in dev.sh (belt-and-suspenders, and
+  helps any deploy without the workspace marker).
+
+⏺ Update(scripts/dev.sh)
+  ⎿  Added 4 lines
+       9  ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+      10  cd "$ROOT"
+      11  
+      12 +# The UI server runs with cwd = ui/, so tell it where the repo 
+         +(SOPs, vendored                                                
+      13 +# harness) actually is.                                        
+      14 +export SOP_REPO_ROOT="$ROOT"                                   
+      15 +                                                               
+      16  # --headed (or headed) shows the worker's Chrome window; defaul
+          t is headless.
+      17  for arg in "$@"; do
+      18    case "$arg" in
+
+⏺ Let me verify the resolver works from the ui/ cwd and typecheck the UI.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Fixed — from cwd=ui/, the resolver now correctly finds the repo root, so
+  sopDir resolves to the real inputs/sops (exists: true). UI typechecks clean.
+  Let me run format/lint to keep the tree clean.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Fixed. The root cause: pnpm --filter @sop/ui dev runs the UI server with its
+  working directory set to ui/, but targetConfig() derived the repo root from
+  process.cwd() — so it looked for SOPs at ui/inputs/sops (which doesn't exist)
+  and runWorker's cp of the SOP catalog threw ENOENT.
+
+  Two-part fix:
+  - runManager.ts now resolves the repo root by walking up from the cwd to the
+  workspace marker (pnpm-workspace.yaml / vendor/browser-harness) instead of
+  assuming cwd is the root. Verified: from ui/ it resolves to the real repo, and
+  inputs/sops exists.
+  - dev.sh also exports SOP_REPO_ROOT="$ROOT" explicitly as a
+  belt-and-suspenders override.
+
+  UI typecheck, lint, and format are clean.
+
+  You'll need to restart scripts/dev.sh --headed (Ctrl-C then re-run) so the UI
+  server picks up the change, then re-submit the napkin order — it should now
+  find the SOP catalog, copy it into the per-run temp dir, and drive the
+  (visible) browser.
+
+✻ Brewed for 2m 32s
+
+❯ [Image #2] the headed browser appears to be blurry, can you fix that?         
+  ⎿  [Image #2]
+
+⏺ The blur is from --force-device-scale-factor=1, which I added to keep the
+  worker's screenshots coordinate-accurate. On a Retina display that forces 1×
+  rendering scaled up to the 2× panel → blurry. The robust fix: let Chrome
+  render at native DPR (crisp), and instead make the browser tool resize each 
+  screenshot down to CSS-pixel dimensions so the worker's click_at_xy
+  coordinates still map 1:1 at any DPR. Let me remove the flag and add the
+  resize.
+⏺ Update(scripts/chrome.sh)
+  ⎿  Removed 1 line
+      40        --no-first-run --no-default-browser-check
+      41        --disable-background-networking --disable-sync
+      42        --disable-features=Translate,MediaRouter
+      43 -      --force-device-scale-factor=1                            
+      43        --window-size=1440,900
+      44        about:blank
+      45      )
+
+⏺ Update(worker/src/browserHarness.ts)
+  ⎿  Added 18 lines, removed 5 lines
+      16  const SHOT_MARKER = '__BH_SHOT__:';
+      17  const SHOT_ERR_MARKER = '__BH_SHOT_ERR__:';
+      18  
+      19 -/** Snippet appended to user code to capture the viewport after
+         - the action. */                                                
+      20 -// NOTE: do NOT downscale here. The worker reads pixel coordina
+         -tes off this                                                   
+      21 -// screenshot and clicks them with click_at_xy (CSS pixels). Do
+         -wnscaling breaks                                               
+      22 -// that 1:1 mapping. Chrome runs at device-scale-factor=1 (see 
+         -scripts/chrome.sh)                                             
+      23 -// so the viewport screenshot is already CSS-pixel-accurate and
+         - under 2000px.                                                 
+      19 +/** Snippet appended to user code to capture the viewport after
+         + the action.                                                   
+      20 + *                                                             
+      21 + * The worker reads pixel coordinates off this screenshot and c
+         +licks them with                                                
+      22 + * click_at_xy, which expects CSS pixels. On a HiDPI/Retina dis
+         +play the raw                                                   
+      23 + * capture is DPR× larger than the CSS viewport, which would br
+         +eak that 1:1                                                   
+      24 + * mapping. So we capture at the display's native DPR (crisp — 
+         +important when the                                             
+      25 + * browser is headed and a human is watching) and then resize t
+         +he image down to                                               
+      26 + * the exact CSS viewport size. Result: coordinates always map 
+         +1:1 regardless of                                              
+      27 + * DPR, and headed Chrome stays sharp (no --force-device-scale-
+         +factor needed). */                                             
+      28  const CAPTURE_SNIPPET = `
+      29  try:
+      30 +    import json as _bh_json                                    
+      31 +    _bh_vw, _bh_vh = _bh_json.loads(js("JSON.stringify([Math.ro
+         +und(window.innerWidth), Math.round(window.innerHeight)])"))    
+      32      _bh_shot = capture_screenshot()
+      33 +    try:                                                       
+      34 +        from PIL import Image as _BhImage                      
+      35 +        _bh_im = _BhImage.open(_bh_shot)                       
+      36 +        if _bh_im.size != (_bh_vw, _bh_vh):                    
+      37 +            _bh_im.resize((_bh_vw, _bh_vh)).save(_bh_shot)     
+      38 +    except Exception:                                          
+      39 +        pass                                                   
+      40      print("${SHOT_MARKER}" + _bh_shot)
+      41  except Exception as _bh_e:
+      42      print("${SHOT_ERR_MARKER}" + str(_bh_e))
+
+⏺ Let me verify the fix at both DPRs: restart the worker's headless Chrome (no
+  flag → DPR 1) and a throwaway headed Chrome (Retina → DPR 2), and confirm the
+  capture+resize yields CSS-pixel dimensions in both cases so coordinates map
+  1:1.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Headless confirmed: DPR 1, screenshot = CSS (1440×813), resize is a no-op — no
+  regression for the eval. Now verify the headed/Retina path (DPR 2 → resized
+  down to CSS).
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Confirmed at both DPRs:
+  - Headless (eval): DPR 1 → screenshot already CSS-sized (1440×813), resize is
+  a no-op → coordinates unchanged, no regression.
+  - Headed/Retina: DPR 2 → Chrome renders crisp at native 2× (2880×1626), and
+  the tool resizes the screenshot down to CSS (1440×813) so the worker's
+  click_at_xy still maps 1:1.
+
+  So the headed window will now be sharp while the worker still clicks
+  accurately. Let me run the quality gates.
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Fixed. The blur came from --force-device-scale-factor=1 in chrome.sh — on a
+  Retina display that renders the page at 1× and lets macOS upscale it to the 2×
+  panel, which looks fuzzy. I'd added that flag to keep the worker's screenshot
+  coordinates accurate.
+
+  The proper fix decouples the two concerns:
+  - Removed --force-device-scale-factor=1 → Chrome now renders at the display's
+  native DPR, so the headed window is crisp.
+  - The browser tool resizes each screenshot down to the CSS viewport size
+  before handing it to the worker. So at DPR 2 the worker still sees a 1440-wide
+  image and its click_at_xy coordinates map 1:1 — at any DPR.
+
+  Verified live: headless stays DPR 1 (screenshots unchanged, eval unaffected),
+  and a headed Retina Chrome renders at 2× (sharp) while the tool downsizes the
+  2880-px capture to 1440-px CSS for accurate clicking. Format + lint clean.
+
+  Restart scripts/dev.sh --headed and the visible browser will be sharp.
+
+✻ Crunched for 2m 23s
+
+※ recap: Goal: a Claude SOP-automation worker validated against an adversarial mock NetSuite, plus a chat UI. It's built and passing 6/6 evals; latest work added temp-dir isolation, a headed-demo option, and a Retina blur fix. Next: restart scripts/dev.sh --headed to confirm the sharp browser.
+
+✻ Claude resuming /loop wakeup (Jun 14 12:57am)
+
+⏺ Scheduled fallback firing — the work it guarded is already complete. Quick
+  confirmation, then I'll conclude (no new suite).
+
+  Ran 1 shell command (ctrl+o to expand)
+
+⏺ Confirmed — nothing running, results stand. Concluding (no new suite needed).
+
+  Summary — isolation validated, all follow-ups fixed
+
+  Isolation-validation suite: 5 passed / 0 failed (the 6th, image-order, you
+  asked to skip). Every scenario performed its SOP ticket while reading the
+  catalog (and attachments) from the per-run temp directory, never the repo.
+
+  Isolation-review workflow: found one real HIGH leak — the browser tool was
+  spreading the full process.env (and inheriting the repo cwd) into its Python
+  subprocess, so the worker could read HARNESS_DIR/SOP_DIR/REPO_ROOT/PWD and
+  secrets. Fixed: minimal sanitized env, neutral cwd, and harness/repo-path
+  redaction on returned output. Verified via a standalone harness test —
+  connects to the mock, neutral getcwd, no repo env vars visible. No blocker
+  leaks remain.
+
+  The two follow-ups you raised after that are also fixed and verified:
+  - ENOENT … ui/inputs/sops — the UI server runs with cwd ui/, so the repo-root
+  derivation was wrong; runManager now walks up to the workspace root (and
+  dev.sh exports SOP_REPO_ROOT). Verified it resolves to the real inputs/sops.
+  - Blurry headed browser — removed --force-device-scale-factor=1 (which caused
+  Retina upscaling fuzz) and instead resize each screenshot to CSS pixels in the
+  tool, so the headed window is crisp and the worker's clicks still map 1:1.
+  Verified at DPR 1 (headless) and DPR 2 (headed Retina).
+
+  Quality gates (typecheck, lint, format) are clean. Both of your requests —
+  temp-dir worker isolation with per-run SOP copies, and a headed demo option
+  (scripts/dev.sh --headed) — are done. To watch a fresh demo: restart
+  scripts/dev.sh --headed and submit a ticket.
+
+✻ Crunched for 26s
