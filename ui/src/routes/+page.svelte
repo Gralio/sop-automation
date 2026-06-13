@@ -10,7 +10,13 @@
     | { kind: 'group'; open: boolean; steps: Step[] }
     | { kind: 'message'; html: string }
     | { kind: 'final'; html: string }
-    | { kind: 'approval'; id: string; summary: string; details?: string; status: 'pending' | 'approved' | 'rejected' };
+    | {
+        kind: 'approval';
+        id: string;
+        summary: string;
+        details?: string;
+        status: 'pending' | 'approved' | 'rejected';
+      };
 
   let ticket = $state('');
   let files = $state<{ file: File; name: string; url?: string }[]>([]);
@@ -46,10 +52,18 @@
         pushStep({ type: 'thought', text: e.text });
         break;
       case 'tool_use':
-        pushStep({ type: 'tool', name: e.name.replace(/^mcp__sop__/, ''), text: typeof e.input === 'string' ? e.input : JSON.stringify(e.input) });
+        pushStep({
+          type: 'tool',
+          name: e.name.replace(/^mcp__sop__/, ''),
+          text: typeof e.input === 'string' ? e.input : JSON.stringify(e.input),
+        });
         break;
       case 'tool_result':
-        pushStep({ type: e.isError ? 'err' : 'result', name: e.name.replace(/^mcp__sop__/, ''), text: e.preview });
+        pushStep({
+          type: e.isError ? 'err' : 'result',
+          name: e.name.replace(/^mcp__sop__/, ''),
+          text: e.preview,
+        });
         break;
       case 'sop_selected':
         sopTitle = e.title;
@@ -62,10 +76,15 @@
         items = [...items, { kind: 'final', html: md(e.text) }];
         break;
       case 'approval_request':
-        items = [...items, { kind: 'approval', id: e.id, summary: e.summary, details: e.details, status: 'pending' }];
+        items = [
+          ...items,
+          { kind: 'approval', id: e.id, summary: e.summary, details: e.details, status: 'pending' },
+        ];
         break;
       case 'approval_resolved': {
-        const it = items.find((x) => x.kind === 'approval' && x.id === e.id) as Extract<Item, { kind: 'approval' }> | undefined;
+        const it = items.find((x) => x.kind === 'approval' && x.id === e.id) as
+          | Extract<Item, { kind: 'approval' }>
+          | undefined;
         if (it) it.status = e.approved ? 'approved' : 'rejected';
         items = [...items];
         break;
@@ -88,7 +107,10 @@
         const f = it.getAsFile();
         if (f) {
           const name = f.name || `pasted-${files.length + 1}.png`;
-          files = [...files, { file: new File([f], name, { type: f.type }), name, url: URL.createObjectURL(f) }];
+          files = [
+            ...files,
+            { file: new File([f], name, { type: f.type }), name, url: URL.createObjectURL(f) },
+          ];
         }
       }
     }
@@ -98,7 +120,14 @@
     const list = (ev.target as HTMLInputElement).files;
     if (!list) return;
     for (const f of Array.from(list)) {
-      files = [...files, { file: f, name: f.name, url: f.type.startsWith('image/') ? URL.createObjectURL(f) : undefined }];
+      files = [
+        ...files,
+        {
+          file: f,
+          name: f.name,
+          url: f.type.startsWith('image/') ? URL.createObjectURL(f) : undefined,
+        },
+      ];
     }
     (ev.target as HTMLInputElement).value = '';
   }
@@ -112,7 +141,10 @@
     const fd = new FormData();
     fd.set('ticket', ticket);
     for (const f of files) fd.append('files', f.file, f.name);
-    items = [...items, { kind: 'user', text: ticket, files: files.map((f) => ({ name: f.name, url: f.url })) }];
+    items = [
+      ...items,
+      { kind: 'user', text: ticket, files: files.map((f) => ({ name: f.name, url: f.url })) },
+    ];
     const submittedTicket = ticket;
     ticket = '';
     const submittedFiles = files;
@@ -174,18 +206,25 @@
             {#if item.files.length}
               <div class="attachments">
                 {#each item.files as f (f.name)}
-                  <span class="chip">{#if f.url}<img src={f.url} alt={f.name} />{/if}{f.name}</span>
+                  <span class="chip"
+                    >{#if f.url}<img src={f.url} alt={f.name} />{/if}{f.name}</span
+                  >
                 {/each}
               </div>
             {/if}
           </div>
         {:else if item.kind === 'group'}
           <details class="group" open={item.open} data-testid="work-group">
-            <summary>{#if running && i === items.length - 1}<span class="spinner"></span>{/if} {item.steps.length} step{item.steps.length === 1 ? '' : 's'} — working in the browser (click to expand)</summary>
+            <summary
+              >{#if running && i === items.length - 1}<span class="spinner"></span>{/if}
+              {item.steps.length} step{item.steps.length === 1 ? '' : 's'} — working in the browser (click
+              to expand)</summary
+            >
             <div class="steps">
               {#each item.steps as s, si (si)}
                 <div class="step {s.type}">
-                  {#if s.name}<span class="name">{s.name}</span> {/if}<span class="io">{s.text}</span>
+                  {#if s.name}<span class="name">{s.name}</span>
+                  {/if}<span class="io">{s.text}</span>
                 </div>
               {/each}
             </div>
@@ -195,14 +234,25 @@
         {:else if item.kind === 'final'}
           <div class="msg final" data-testid="final">{@html item.html}</div>
         {:else if item.kind === 'approval'}
-          <div class="approval {item.status !== 'pending' ? 'resolved' : ''}" data-testid="approval">
+          <div
+            class="approval {item.status !== 'pending' ? 'resolved' : ''}"
+            data-testid="approval"
+          >
             <div class="title">Approval needed</div>
             <div>{item.summary}</div>
             {#if item.details}<div class="muted">{item.details}</div>{/if}
             {#if item.status === 'pending'}
               <div class="actions">
-                <button class="btn approve" data-testid="approve" onclick={() => decide(item.id, true)}>Approve</button>
-                <button class="btn reject" data-testid="reject" onclick={() => decide(item.id, false)}>Reject</button>
+                <button
+                  class="btn approve"
+                  data-testid="approve"
+                  onclick={() => decide(item.id, true)}>Approve</button
+                >
+                <button
+                  class="btn reject"
+                  data-testid="reject"
+                  onclick={() => decide(item.id, false)}>Reject</button
+                >
               </div>
             {:else}
               <div class="muted">→ {item.status}</div>
@@ -212,8 +262,9 @@
       {/each}
       {#if items.length === 0}
         <div class="sop-empty">
-          Try: “Enter a B2B sales order for THE Builders of Nevada (account 5129), PO ‘Token Restock’,
-          200 of item 13828 and 50 of item 13020, then approve it.” You can paste an image or attach a spreadsheet.
+          Try: “Enter a B2B sales order for THE Builders of Nevada (account 5129), PO ‘Token
+          Restock’, 200 of item 13828 and 50 of item 13020, then approve it.” You can paste an image
+          or attach a spreadsheet.
         </div>
       {/if}
     </div>
@@ -229,15 +280,25 @@
       {#if files.length}
         <div class="attachments">
           {#each files as f, i (f.name + i)}
-            <span class="chip">{#if f.url}<img src={f.url} alt={f.name} />{/if}{f.name}
-              <button class="btn" style="padding:0 6px" onclick={() => removeFile(i)}>✕</button></span>
+            <span class="chip"
+              >{#if f.url}<img src={f.url} alt={f.name} />{/if}{f.name}
+              <button class="btn" style="padding:0 6px" onclick={() => removeFile(i)}>✕</button
+              ></span
+            >
           {/each}
         </div>
       {/if}
       <div class="row">
-        <label class="btn">Attach<input type="file" multiple style="display:none" onchange={onPickFiles} /></label>
+        <label class="btn"
+          >Attach<input type="file" multiple style="display:none" onchange={onPickFiles} /></label
+        >
         <span class="grow"></span>
-        <button class="btn approve" onclick={submit} disabled={running || !ticket.trim()} data-testid="send">
+        <button
+          class="btn approve"
+          onclick={submit}
+          disabled={running || !ticket.trim()}
+          data-testid="send"
+        >
           {running ? 'Working…' : 'Send'}
         </button>
       </div>

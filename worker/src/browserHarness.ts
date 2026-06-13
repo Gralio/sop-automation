@@ -45,14 +45,23 @@ export interface RunPythonOptions {
   timeoutMs?: number;
 }
 
-function runUv(args: string[], env: NodeJS.ProcessEnv, timeoutMs: number): Promise<{ stdout: string; stderr: string; code: number }> {
+function runUv(
+  args: string[],
+  env: NodeJS.ProcessEnv,
+  timeoutMs: number,
+): Promise<{ stdout: string; stderr: string; code: number }> {
   return new Promise((resolve) => {
     execFile(
       'uv',
       args,
       { env, timeout: timeoutMs, maxBuffer: 32 * 1024 * 1024 },
       (err, stdout, stderr) => {
-        const code = err && typeof (err as { code?: unknown }).code === 'number' ? (err as { code: number }).code : err ? 1 : 0;
+        const code =
+          err && typeof (err as { code?: unknown }).code === 'number'
+            ? (err as { code: number }).code
+            : err
+              ? 1
+              : 0;
         resolve({ stdout: stdout ?? '', stderr: stderr ?? '', code });
       },
     );
@@ -80,7 +89,11 @@ export async function warmUp(browser: BrowserConfig): Promise<void> {
 
 export async function runPython(opts: RunPythonOptions): Promise<BrowserRunResult> {
   const code = opts.screenshot ? `${opts.code}\n${CAPTURE_SNIPPET}` : opts.code;
-  const { stdout, stderr, code: exit } = await runUv(
+  const {
+    stdout,
+    stderr,
+    code: exit,
+  } = await runUv(
     ['run', '--project', opts.browser.harnessDir, 'browser-harness', '-c', code],
     harnessEnv(opts.browser),
     opts.timeoutMs ?? 120_000,

@@ -11,7 +11,9 @@ test('demo run: grouping, SOP panel, approval round-trip, final message', async 
   await page.getByTestId('send').click();
 
   // The selected SOP renders as markdown in the right-hand panel.
-  await expect(page.getByTestId('sop-body')).toContainText('B2B Sales Order Entry', { timeout: 15000 });
+  await expect(page.getByTestId('sop-body')).toContainText('B2B Sales Order Entry', {
+    timeout: 15000,
+  });
 
   // Tool calls are grouped and COLLAPSED by default.
   const group = page.getByTestId('work-group').first();

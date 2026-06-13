@@ -81,7 +81,9 @@ export function createWorkerMcpServer(ctx: WorkerToolsContext): McpSdkServerConf
         markdown = await readFile(args.path, 'utf8');
       } catch (err) {
         return {
-          content: [{ type: 'text', text: `Could not read SOP at ${args.path}: ${(err as Error).message}` }],
+          content: [
+            { type: 'text', text: `Could not read SOP at ${args.path}: ${(err as Error).message}` },
+          ],
           isError: true,
         };
       }
@@ -90,7 +92,10 @@ export function createWorkerMcpServer(ctx: WorkerToolsContext): McpSdkServerConf
       await ctx.host.onEvent({ type: 'sop_selected', path: args.path, title, markdown });
       return {
         content: [
-          { type: 'text', text: `Now following SOP: ${title} (${args.path}). Follow its steps; adapt as the live UI requires.` },
+          {
+            type: 'text',
+            text: `Now following SOP: ${title} (${args.path}). Follow its steps; adapt as the live UI requires.`,
+          },
         ],
       };
     },
@@ -110,13 +115,24 @@ export function createWorkerMcpServer(ctx: WorkerToolsContext): McpSdkServerConf
     'ask_approval',
     'Request human approval BEFORE submitting a mutation (saving/creating/finalizing a record, approving, posting a refund or payment). Provide a precise summary of exactly what you will do. Blocks until answered. If denied, stop the task.',
     {
-      summary: z.string().describe('Precise, specific description of the mutation you are about to commit.'),
+      summary: z
+        .string()
+        .describe('Precise, specific description of the mutation you are about to commit.'),
       details: z.string().optional().describe('Optional extra detail (record, field values).'),
     },
     async (args) => {
       const id = `appr_${++approvalSeq}`;
-      await ctx.host.onEvent({ type: 'approval_request', id, summary: args.summary, details: args.details });
-      const decision = await ctx.host.requestApproval({ id, summary: args.summary, details: args.details });
+      await ctx.host.onEvent({
+        type: 'approval_request',
+        id,
+        summary: args.summary,
+        details: args.details,
+      });
+      const decision = await ctx.host.requestApproval({
+        id,
+        summary: args.summary,
+        details: args.details,
+      });
       await ctx.host.onEvent({
         type: 'approval_resolved',
         id,

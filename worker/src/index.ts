@@ -4,11 +4,21 @@
  * mutations through the host's approval callback.
  */
 import { query } from '@anthropic-ai/claude-agent-sdk';
-import type { Options, SDKMessage, SDKUserMessage, PermissionResult } from '@anthropic-ai/claude-agent-sdk';
+import type {
+  Options,
+  SDKMessage,
+  SDKUserMessage,
+  PermissionResult,
+} from '@anthropic-ai/claude-agent-sdk';
 import type { RunWorkerOptions, RunWorkerResult, WorkerHost } from './contract.js';
 import { buildSystemPrompt } from './prompt.js';
 import { buildInitialContent } from './attachments.js';
-import { createWorkerMcpServer, SERVER_NAME, SEMANTIC_TOOLS, type WorkerToolsContext } from './tools.js';
+import {
+  createWorkerMcpServer,
+  SERVER_NAME,
+  SEMANTIC_TOOLS,
+  type WorkerToolsContext,
+} from './tools.js';
 import { warmUp } from './browserHarness.js';
 
 export type { RunWorkerOptions, RunWorkerResult, WorkerHost } from './contract.js';
@@ -36,7 +46,10 @@ function previewToolResult(content: unknown): { text: string; isError: boolean }
   return { text: parts.join('\n').slice(0, 600), isError };
 }
 
-export async function runWorker(opts: RunWorkerOptions, host: WorkerHost): Promise<RunWorkerResult> {
+export async function runWorker(
+  opts: RunWorkerOptions,
+  host: WorkerHost,
+): Promise<RunWorkerResult> {
   const attachments = opts.attachments ?? [];
   const abortController = new AbortController();
   if (opts.abortSignal) {
@@ -124,7 +137,12 @@ export async function runWorker(opts: RunWorkerOptions, host: WorkerHost): Promi
           } else if (block.type === 'tool_use') {
             toolNames.set(block.id, block.name);
             if (!SEMANTIC_TOOLS.has(block.name)) {
-              await host.onEvent({ type: 'tool_use', id: block.id, name: block.name, input: block.input });
+              await host.onEvent({
+                type: 'tool_use',
+                id: block.id,
+                name: block.name,
+                input: block.input,
+              });
             }
           }
         }

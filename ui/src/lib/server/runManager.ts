@@ -118,29 +118,77 @@ async function runDemo(host: WorkerHost): Promise<void> {
   await wait(50);
   await host.onEvent({ type: 'assistant_text', text: 'Looking for the right SOP…' });
   await host.onEvent({ type: 'tool_use', id: 't1', name: 'Glob', input: { pattern: '*.md' } });
-  await host.onEvent({ type: 'tool_result', id: 't1', name: 'Glob', isError: false, preview: 'B2B_Sales_Order_Entry__Base_Process.md' });
-  await host.onEvent({ type: 'sop_selected', path: '/sops/B2B.md', title: 'SOP: B2B Sales Order Entry', markdown: DEMO_SOP });
-  await host.onEvent({ type: 'tool_use', id: 't2', name: 'browser', input: { code: 'new_tab("…")' } });
-  await host.onEvent({ type: 'tool_result', id: 't2', name: 'browser', isError: false, preview: '[screenshot]' });
-  await host.onEvent({ type: 'send_to_user', content: 'I found the customer and filled the order. Requesting approval before saving.' });
+  await host.onEvent({
+    type: 'tool_result',
+    id: 't1',
+    name: 'Glob',
+    isError: false,
+    preview: 'B2B_Sales_Order_Entry__Base_Process.md',
+  });
+  await host.onEvent({
+    type: 'sop_selected',
+    path: '/sops/B2B.md',
+    title: 'SOP: B2B Sales Order Entry',
+    markdown: DEMO_SOP,
+  });
+  await host.onEvent({
+    type: 'tool_use',
+    id: 't2',
+    name: 'browser',
+    input: { code: 'new_tab("…")' },
+  });
+  await host.onEvent({
+    type: 'tool_result',
+    id: 't2',
+    name: 'browser',
+    isError: false,
+    preview: '[screenshot]',
+  });
+  await host.onEvent({
+    type: 'send_to_user',
+    content: 'I found the customer and filled the order. Requesting approval before saving.',
+  });
   const approval = {
     id: 'appr_1',
     summary: 'Save sales order for THE Builders of Nevada with 2 lines (13828 x200, 13020 x50).',
   };
   await host.onEvent({ type: 'approval_request', ...approval });
   const decision = await host.requestApproval(approval);
-  await host.onEvent({ type: 'approval_resolved', id: 'appr_1', approved: decision.approved, note: decision.note });
+  await host.onEvent({
+    type: 'approval_resolved',
+    id: 'appr_1',
+    approved: decision.approved,
+    note: decision.note,
+  });
   if (decision.approved) {
-    await host.onEvent({ type: 'tool_use', id: 't3', name: 'browser', input: { code: 'click Save' } });
-    await host.onEvent({ type: 'tool_result', id: 't3', name: 'browser', isError: false, preview: 'SO527901 saved' });
-    await host.onEvent({ type: 'final', text: '**Done.** Sales order **SO527901** created and approved (Pending Fulfillment).' });
+    await host.onEvent({
+      type: 'tool_use',
+      id: 't3',
+      name: 'browser',
+      input: { code: 'click Save' },
+    });
+    await host.onEvent({
+      type: 'tool_result',
+      id: 't3',
+      name: 'browser',
+      isError: false,
+      preview: 'SO527901 saved',
+    });
+    await host.onEvent({
+      type: 'final',
+      text: '**Done.** Sales order **SO527901** created and approved (Pending Fulfillment).',
+    });
   } else {
     await host.onEvent({ type: 'final', text: 'Stopped — approval was rejected.' });
   }
   await host.onEvent({ type: 'run_finished', ok: decision.approved });
 }
 
-export function resolveApproval(runId: string, approvalId: string, decision: ApprovalDecision): boolean {
+export function resolveApproval(
+  runId: string,
+  approvalId: string,
+  decision: ApprovalDecision,
+): boolean {
   const run = runs.get(runId);
   const resolver = run?.pending.get(approvalId);
   if (!run || !resolver) return false;

@@ -53,7 +53,9 @@ if (!ticket) {
   console.error('Missing --ticket');
   process.exit(2);
 }
-const attachPaths = (Array.isArray(args.attach) ? args.attach : args.attach ? [String(args.attach)] : []) as string[];
+const attachPaths = (
+  Array.isArray(args.attach) ? args.attach : args.attach ? [String(args.attach)] : []
+) as string[];
 const attachments: Attachment[] = attachPaths.map((p, i) => ({
   id: `att_${i}`,
   name: basename(p),
@@ -73,7 +75,9 @@ const host: WorkerHost = {
         process.stderr.write(`  ⚙️  ${e.name} ${JSON.stringify(e.input).slice(0, 200)}\n`);
         break;
       case 'tool_result':
-        process.stderr.write(`     ↳ ${e.isError ? '⚠️ ' : ''}${e.preview.replace(/\n/g, ' ').slice(0, 200)}\n`);
+        process.stderr.write(
+          `     ↳ ${e.isError ? '⚠️ ' : ''}${e.preview.replace(/\n/g, ' ').slice(0, 200)}\n`,
+        );
         break;
       case 'assistant_text':
         process.stderr.write(`💭 ${e.text.slice(0, 400)}\n`);

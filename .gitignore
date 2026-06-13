@@ -20,6 +20,8 @@ gym
 # Eval run artifacts (transcripts, screenshots, judge reports)
 runs
 .runs
+.design-tmp
+.playwright-mcp
 
 # OS / tooling
 .DS_Store
