@@ -1,0 +1,5 @@
+packages:
+  - 'worker'
+  - 'ui'
+  - 'tests'
+  - 'gym/mock' # gitignored private mock; absent in public clones (glob simply won't match)

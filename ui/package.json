@@ -1,0 +1,28 @@
+{
+  "name": "@sop/ui",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Chat UI for the SOP worker (SvelteKit). Public.",
+  "scripts": {
+    "dev": "vite dev --port 5190 --strictPort",
+    "build": "vite build",
+    "preview": "vite preview --port 5190 --strictPort",
+    "typecheck": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "@sop/worker": "workspace:*",
+    "marked": "^15.0.6"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.1",
+    "@sveltejs/adapter-node": "^5.2.12",
+    "@sveltejs/kit": "^2.15.0",
+    "@sveltejs/vite-plugin-svelte": "^5.0.3",
+    "svelte": "^5.19.0",
+    "svelte-check": "^4.1.4",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7"
+  }
+}
