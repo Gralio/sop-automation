@@ -28,3 +28,6 @@ runs
 .venv
 __pycache__
 *.pyc
+
+# Frontend-design exploration mockups (the chosen design is implemented in ui/)
+mockups
