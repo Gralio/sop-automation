@@ -40,7 +40,6 @@ case "${1:-}" in
       --no-first-run --no-default-browser-check
       --disable-background-networking --disable-sync
       --disable-features=Translate,MediaRouter
-      --force-device-scale-factor=1
       --window-size=1440,900
       about:blank
     )

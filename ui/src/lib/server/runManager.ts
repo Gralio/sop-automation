@@ -3,9 +3,8 @@
  * WorkerEvents are buffered and fanned out to SSE subscribers, and ask_approval
  * is resolved by an HTTP callback correlated by approval id.
  */
-import { mkdtemp } from 'node:fs/promises';
-import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { existsSync } from 'node:fs';
+import { dirname, join } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { runWorker } from '@sop/worker';
 import type {
@@ -35,8 +34,30 @@ export interface TargetConfig {
   model?: string;
 }
 
+/**
+ * Resolve the repo root robustly. `pnpm --filter @sop/ui dev` runs the server
+ * with cwd = the `ui/` package dir, so plain `process.cwd()` would point the
+ * SOP/harness dirs at `ui/inputs/sops` etc. Walk up to the workspace root
+ * (marked by pnpm-workspace.yaml or vendor/browser-harness) instead.
+ */
+function findRepoRoot(start: string): string {
+  let dir = start;
+  for (let i = 0; i < 10; i++) {
+    if (
+      existsSync(join(dir, 'pnpm-workspace.yaml')) ||
+      existsSync(join(dir, 'vendor', 'browser-harness'))
+    ) {
+      return dir;
+    }
+    const parent = dirname(dir);
+    if (parent === dir) break;
+    dir = parent;
+  }
+  return start;
+}
+
 export function targetConfig(): TargetConfig {
-  const repoRoot = process.env.SOP_REPO_ROOT ?? process.cwd();
+  const repoRoot = process.env.SOP_REPO_ROOT ?? findRepoRoot(process.cwd());
   return {
     targetUrl: process.env.TARGET_URL ?? 'http://127.0.0.1:5180',
     sopDir: process.env.SOP_DIR ?? join(repoRoot, 'inputs/sops'),
@@ -79,16 +100,15 @@ export async function startRun(ticket: string, attachments: Attachment[]): Promi
   }
 
   const cfg = targetConfig();
-  const workDir = await mkdtemp(join(tmpdir(), `sop-ui-${id}-`));
 
-  // Fire and forget; events stream as they happen.
+  // Fire and forget; events stream as they happen. The worker creates its own
+  // isolated temp working directory per run.
   void runWorker(
     {
       ticket,
       attachments,
       sopDir: cfg.sopDir,
       targetUrl: cfg.targetUrl,
-      workDir,
       browser: { cdpUrl: cfg.cdpUrl, buName: cfg.buName, harnessDir: cfg.harnessDir },
       model: cfg.model,
     },

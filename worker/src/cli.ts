@@ -112,7 +112,8 @@ const result = await runWorker(
     attachments,
     sopDir: String(args['sop-dir'] ?? ''),
     targetUrl: String(args.url ?? ''),
-    workDir: String(args['work-dir'] ?? process.cwd()),
+    // Omit by default — the worker makes its own isolated temp dir per run.
+    workDir: args['work-dir'] ? String(args['work-dir']) : undefined,
     browser: {
       cdpUrl: String(args['cdp-url'] ?? 'http://127.0.0.1:9222'),
       buName: String(args['bu-name'] ?? 'sop-worker'),

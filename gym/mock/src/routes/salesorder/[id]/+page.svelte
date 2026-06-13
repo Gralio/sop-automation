@@ -116,12 +116,21 @@
 <div class="ns-subtitle"><span class="ns-status">{status}</span></div>
 
 <div class="ns-toolbar">
-  <button class="ns-btn" name="edit" onclick={() => goto('/salesorder/new?entity=' + data.customerId)}>Edit</button>
+  <button
+    class="ns-btn"
+    name="edit"
+    onclick={() => goto('/salesorder/new?entity=' + data.customerId)}>Edit</button
+  >
   {#if status === 'Pending Approval'}
     <button class="ns-btn primary" name="approve" onclick={approve} disabled={busy}>Approve</button>
   {/if}
   {#if status === 'Pending Fulfillment'}
-    <button class="ns-btn primary" name="fulfill" onclick={() => (showFulfill = true)} disabled={busy}>Fulfill</button>
+    <button
+      class="ns-btn primary"
+      name="fulfill"
+      onclick={() => (showFulfill = true)}
+      disabled={busy}>Fulfill</button
+    >
   {/if}
   {#if status === 'Pending Fulfillment' || status === 'Shipped'}
     <button class="ns-btn" name="bill" onclick={bill} disabled={busy}>Bill</button>
@@ -132,7 +141,9 @@
 <section class="ns-section">
   <h3>Primary Information</h3>
   <div class="ns-kv">
-    <span class="k">Customer</span><span><a href="/customer/{data.customerId}">{data.customerDisplay}</a></span>
+    <span class="k">Customer</span><span
+      ><a href="/customer/{data.customerId}">{data.customerDisplay}</a></span
+    >
     <span class="k">Order Placed By</span><span>{data.orderPlacedBy}</span>
     <span class="k">PO # / Ref</span><span>{data.poRef}</span>
     <span class="k">Source</span><span>{data.source}</span>
@@ -156,7 +167,12 @@
       </div>
       <div class="ns-field">
         <span class="ns-label">&nbsp;</span>
-        <button class="ns-btn primary" name="saveFulfillment" onclick={saveFulfillment} disabled={busy}>
+        <button
+          class="ns-btn primary"
+          name="saveFulfillment"
+          onclick={saveFulfillment}
+          disabled={busy}
+        >
           Save Fulfillment
         </button>
       </div>
@@ -244,7 +260,11 @@
 </div>
 
 {#if toast}
-  <div class="ns-toast {toast.kind === 'ok' ? 'ok' : ''}" role="alert" onclick={() => (toast = null)}>
+  <div
+    class="ns-toast {toast.kind === 'ok' ? 'ok' : ''}"
+    role="alert"
+    onclick={() => (toast = null)}
+  >
     {toast.msg}
   </div>
 {/if}

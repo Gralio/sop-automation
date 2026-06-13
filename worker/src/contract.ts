@@ -91,8 +91,14 @@ export interface RunWorkerOptions {
   targetUrl: string;
   /** Browser control configuration. */
   browser: BrowserConfig;
-  /** Scratch directory for screenshots, decoded attachments, etc. */
-  workDir: string;
+  /**
+   * Optional base directory under which the worker creates a FRESH, isolated
+   * per-run working directory. Defaults to the OS temp dir. The worker's cwd is
+   * that throwaway subdir (in temp), the SOP catalog is copied into it, and the
+   * worker never sees the caller's repository — so it has no idea where its own
+   * code lives or where the real SOP catalog is.
+   */
+  workDir?: string;
   /** Driving model. Defaults to Sonnet (claude-sonnet-4-6). */
   model?: string;
   /** Hard cap on agent turns. */

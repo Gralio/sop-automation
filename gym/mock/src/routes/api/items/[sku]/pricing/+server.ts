@@ -12,7 +12,10 @@ export const POST: RequestHandler = async ({ params, request }) => {
   // Matrix items require the Update Matrix mass action — a plain save must not
   // persist them (the worker has to discover this from the SOP + the UI).
   if (item.isMatrix && !body?.matrix) {
-    return json({ ok: false, error: 'This is a matrix item. Use Actions > Update Matrix.' }, { status: 409 });
+    return json(
+      { ok: false, error: 'This is a matrix item. Use Actions > Update Matrix.' },
+      { status: 409 },
+    );
   }
   if (body?.matrix) {
     // Update Matrix requires all base price levels populated, else "missing price(s)".

@@ -54,6 +54,9 @@ scripts/chrome.sh start|stop   # the worker's dedicated debug-port Chrome
 The worker has no built-in knowledge — it learns each task from the ticket, your SOPs, and what it sees in the browser. Configure it via `.env` (see `.env.example`):
 
 - `SOP_DIR` — folder of SOP markdown files the worker is mandated to follow
+
+[`assets/B2B_Sales_Order_Entry__Base_Process.md`](assets/B2B_Sales_Order_Entry__Base_Process.md) is included as a **reference SOP** so you can see the expected shape and level of detail. It is only an example — to automate your own work you must provide your **own** SOPs that document your processes.
+
 - `TARGET_URL` — the web app the worker operates
 - `CDP_URL` — the dedicated Chrome it controls (default `http://127.0.0.1:9222`)
 - `MODEL` — driving model (default `claude-sonnet-4-6`)

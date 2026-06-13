@@ -26,7 +26,6 @@ const cfg = {
   cdpUrl: process.env.CDP_URL ?? 'http://127.0.0.1:9222',
   buName: process.env.BU_NAME ?? 'eval',
   harnessDir: process.env.HARNESS_DIR ?? join(repoRoot, 'vendor/browser-harness'),
-  workBase: process.env.WORK_DIR ?? join(repoRoot, '.runs'),
   scenarios: process.env.SCENARIOS ?? join(repoRoot, 'gym/scenarios/index.ts'),
   model: process.env.MODEL || undefined,
   judge: process.env.JUDGE !== '0',
@@ -78,8 +77,8 @@ function ensureChrome(): void {
 
 async function runScenario(scenario: Scenario): Promise<ScenarioResult> {
   const start = Date.now();
-  const workDir = join(cfg.workBase, scenario.id);
-  await mkdir(workDir, { recursive: true });
+  // The worker isolates itself in a fresh OS-temp dir per run (see runWorker) —
+  // we deliberately do NOT hand it a path inside this repo.
   ensureChrome();
   await resetMock(scenario.adversarial);
 
@@ -97,7 +96,6 @@ async function runScenario(scenario: Scenario): Promise<ScenarioResult> {
         attachments: resolveAttachments(scenario),
         sopDir: cfg.sopDir,
         targetUrl: cfg.mockUrl,
-        workDir,
         browser: { cdpUrl: cfg.cdpUrl, buName: cfg.buName, harnessDir: cfg.harnessDir },
         model: cfg.model,
         maxTurns: scenario.maxTurns,

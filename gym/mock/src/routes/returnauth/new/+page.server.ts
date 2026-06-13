@@ -17,7 +17,9 @@ export const load: PageServerLoad = async ({ url }) => {
 
   return {
     fromSO: so.id,
-    customer: customer ? { id: customer.id, display: customer.display } : { id: so.customerId, display: so.customerId },
+    customer: customer
+      ? { id: customer.id, display: customer.display }
+      : { id: so.customerId, display: so.customerId },
     lines: so.lines.map((l) => ({
       sku: l.sku,
       description: l.description,

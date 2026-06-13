@@ -74,15 +74,21 @@
 <section class="ns-section">
   <h3>Primary Information</h3>
   <div class="ns-kv">
-    <span class="k">Customer</span><span><a href="/customer/{data.customerId}">{data.customerDisplay}</a></span>
+    <span class="k">Customer</span><span
+      ><a href="/customer/{data.customerId}">{data.customerDisplay}</a></span
+    >
     {#if data.fromSalesOrder}
-      <span class="k">Created From</span><span><a href="/salesorder/{data.fromSalesOrder}">{data.fromSalesOrder}</a></span>
+      <span class="k">Created From</span><span
+        ><a href="/salesorder/{data.fromSalesOrder}">{data.fromSalesOrder}</a></span
+      >
     {/if}
     <span class="k">Reason</span><span>{data.reason}</span>
     <span class="k">Return Type</span><span>{data.returnType}</span>
     <span class="k">Comments</span><span>{data.comments}</span>
     {#if creditMemoId}
-      <span class="k">Credit Memo</span><span><a href="/invoice/{creditMemoId}">{creditMemoId}</a></span>
+      <span class="k">Credit Memo</span><span
+        ><a href="/invoice/{creditMemoId}">{creditMemoId}</a></span
+      >
     {/if}
   </div>
 </section>
@@ -122,7 +128,11 @@
 </div>
 
 {#if toast}
-  <div class="ns-toast {toast.kind === 'ok' ? 'ok' : ''}" role="alert" onclick={() => (toast = null)}>
+  <div
+    class="ns-toast {toast.kind === 'ok' ? 'ok' : ''}"
+    role="alert"
+    onclick={() => (toast = null)}
+  >
     {toast.msg}
   </div>
 {/if}

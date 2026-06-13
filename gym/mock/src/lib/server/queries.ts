@@ -37,17 +37,32 @@ export function search(q: string): SearchHit[] {
 
   for (const c of store.customers.values()) {
     if (matches(c.display) || matches(c.id) || matches(c.name)) {
-      hits.push({ type: 'Customer', id: c.id, label: c.display, href: `/customer/${encodeURIComponent(c.id)}` });
+      hits.push({
+        type: 'Customer',
+        id: c.id,
+        label: c.display,
+        href: `/customer/${encodeURIComponent(c.id)}`,
+      });
     }
   }
   for (const it of store.items.values()) {
     if (matches(it.display) || matches(it.sku) || matches(it.name)) {
-      hits.push({ type: 'Inventory Item', id: it.sku, label: it.display, href: `/item/${encodeURIComponent(it.sku)}` });
+      hits.push({
+        type: 'Inventory Item',
+        id: it.sku,
+        label: it.display,
+        href: `/item/${encodeURIComponent(it.sku)}`,
+      });
     }
   }
   for (const so of store.salesOrders.values()) {
     if (matches(so.id)) {
-      hits.push({ type: 'Sales Order', id: so.id, label: `${so.id} (${so.status})`, href: `/salesorder/${so.id}` });
+      hits.push({
+        type: 'Sales Order',
+        id: so.id,
+        label: `${so.id} (${so.status})`,
+        href: `/salesorder/${so.id}`,
+      });
     }
   }
   for (const inv of store.invoices.values()) {
@@ -57,7 +72,12 @@ export function search(q: string): SearchHit[] {
   }
   for (const rma of store.rmas.values()) {
     if (matches(rma.id)) {
-      hits.push({ type: 'Return Authorization', id: rma.id, label: `${rma.id} (${rma.status})`, href: `/returnauth/${rma.id}` });
+      hits.push({
+        type: 'Return Authorization',
+        id: rma.id,
+        label: `${rma.id} (${rma.status})`,
+        href: `/returnauth/${rma.id}`,
+      });
     }
   }
   return hits;
@@ -106,7 +126,8 @@ export function buildLines(lines: NewLineInput[]): OrderLine[] {
   const store = getStore();
   return lines.map((l) => {
     const item = store.items.get(l.sku);
-    const rate = l.priceLevel === 'Custom' ? round2(l.rate ?? 0) : round2(rateFor(l.sku, l.priceLevel, l.qty));
+    const rate =
+      l.priceLevel === 'Custom' ? round2(l.rate ?? 0) : round2(rateFor(l.sku, l.priceLevel, l.qty));
     return {
       sku: l.sku,
       description: l.description || item?.name || l.sku,
@@ -150,7 +171,11 @@ export function approveSalesOrder(id: string): SalesOrder | undefined {
   return so;
 }
 
-export function fulfillSalesOrder(id: string, trackingNumber?: string, packageWeight?: string): ItemFulfillment | undefined {
+export function fulfillSalesOrder(
+  id: string,
+  trackingNumber?: string,
+  packageWeight?: string,
+): ItemFulfillment | undefined {
   const store = getStore();
   const so = store.salesOrders.get(id);
   if (!so) return undefined;
@@ -221,7 +246,9 @@ export function receiveRma(id: string): ReturnAuthorization | undefined {
   return rma;
 }
 
-export function refundRma(id: string): { rma: ReturnAuthorization; creditMemo: CreditMemo } | undefined {
+export function refundRma(
+  id: string,
+): { rma: ReturnAuthorization; creditMemo: CreditMemo } | undefined {
   const store = getStore();
   const rma = store.rmas.get(id);
   if (!rma) return undefined;
@@ -238,7 +265,10 @@ export function refundRma(id: string): { rma: ReturnAuthorization; creditMemo: C
   return { rma, creditMemo: cm };
 }
 
-export function updateItemPricing(sku: string, priceLevels: Record<string, Record<string, number>>): boolean {
+export function updateItemPricing(
+  sku: string,
+  priceLevels: Record<string, Record<string, number>>,
+): boolean {
   const item = getStore().items.get(sku);
   if (!item) return false;
   for (const [lvl, table] of Object.entries(priceLevels)) {

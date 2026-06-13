@@ -82,12 +82,18 @@
 
 {#if !data.customer || !data.fromSO}
   <div class="ns-banner">
-    No sales order selected. Open a sales order and click “Authorize Return” to create a return authorization.
+    No sales order selected. Open a sales order and click “Authorize Return” to create a return
+    authorization.
   </div>
 {/if}
 
 <div class="ns-toolbar">
-  <button class="ns-btn primary" name="save" onclick={save} disabled={saving || !data.customer || !data.fromSO}>
+  <button
+    class="ns-btn primary"
+    name="save"
+    onclick={save}
+    disabled={saving || !data.customer || !data.fromSO}
+  >
     {saving ? 'Saving…' : 'Save'}
   </button>
   <button class="ns-btn" name="cancel" onclick={() => history.back()}>Cancel</button>
@@ -163,7 +169,11 @@
 </div>
 
 {#if toast}
-  <div class="ns-toast {toast.kind === 'ok' ? 'ok' : ''}" role="alert" onclick={() => (toast = null)}>
+  <div
+    class="ns-toast {toast.kind === 'ok' ? 'ok' : ''}"
+    role="alert"
+    onclick={() => (toast = null)}
+  >
     {toast.msg}
   </div>
 {/if}

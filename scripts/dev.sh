@@ -3,10 +3,23 @@
 # NetSuite gym, and the chat UI. Ctrl-C tears everything down.
 #
 #   scripts/dev.sh                 # headless worker Chrome
-#   CHROME_HEADLESS=0 scripts/dev.sh   # watch the worker drive the browser
+#   scripts/dev.sh --headed        # VISIBLE Chrome — watch the worker drive it
+#   CHROME_HEADLESS=0 scripts/dev.sh   # same as --headed
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
+
+# The UI server runs with cwd = ui/, so tell it where the repo (SOPs, vendored
+# harness) actually is.
+export SOP_REPO_ROOT="$ROOT"
+
+# --headed (or headed) shows the worker's Chrome window; default is headless.
+for arg in "$@"; do
+  case "$arg" in
+    --headed | headed) CHROME_HEADLESS=0 ;;
+    --headless | headless) CHROME_HEADLESS=1 ;;
+  esac
+done
 
 cleanup() {
   echo "shutting down…"
@@ -16,8 +29,9 @@ cleanup() {
 }
 trap cleanup EXIT INT TERM
 
-echo "[1/3] starting dedicated Chrome on :9222 (headless=${CHROME_HEADLESS:-1})…"
-CHROME_HEADLESS="${CHROME_HEADLESS:-1}" scripts/chrome.sh start
+HEADLESS="${CHROME_HEADLESS:-1}"
+echo "[1/3] starting dedicated Chrome on :9222 ($([[ "$HEADLESS" == 0 ]] && echo 'HEADED — visible window' || echo headless))…"
+CHROME_HEADLESS="$HEADLESS" scripts/chrome.sh start
 
 echo "[2/3] starting mock NetSuite gym on :5180…"
 pnpm --filter @sop/mock dev >/tmp/sop-mock.log 2>&1 &

@@ -85,7 +85,15 @@ function inv(
 }
 
 function svc(sku: string, name: string, price: number): Item {
-  return { sku, name, display: `${sku} : ${name}`, basePrice: price, available: {}, priceLevels: {}, isService: true };
+  return {
+    sku,
+    name,
+    display: `${sku} : ${name}`,
+    basePrice: price,
+    available: {},
+    priceLevels: {},
+    isService: true,
+  };
 }
 
 function cust(
@@ -128,7 +136,14 @@ function seedCustomers(): Customer[] {
     cust('1302-013', 'Silver Pine Club', 'po@silverpine.example', 868.5, 7500, 0),
     // near-duplicate pair — disambiguate by account id / exact name
     cust('1302-039', 'Willow Creek Club', 'buyer@willowcreekclub.example', 1645.0, 7500, 0),
-    cust('1302-111', 'Willow Creek Construction Group', 'orders@willowcreekcg.example', 540.0, 7500, 0),
+    cust(
+      '1302-111',
+      'Willow Creek Construction Group',
+      'orders@willowcreekcg.example',
+      540.0,
+      7500,
+      0,
+    ),
     cust('1043', 'MERIDIAN Construction Group - NV', 'po@meridian-nv.example', 11105.02, 5000, 120),
     cust('11584', 'Twilight Hills B.S.', 'orders@twilighthills.example', 320.0, 5000, 0),
     cust('3121', 'The Builders at Rancho Solano', 'ap@ranchosolano.example', 0, 10000, 0),
@@ -136,7 +151,14 @@ function seedCustomers(): Customer[] {
     cust('9141', 'Canyon Falls Construction Group', 'po@canyonfalls.example', 1280.0, 8000, 0),
     cust('21159', 'Apex Consumer Warranty', 'warranty@apexsupply.example', 0, 0, 0, 'warranty'),
     cust('40837', 'Consumer - Shopify DuraForge', 'web@apexsupply.example', 0, 0, 0, 'marketplace'),
-    cust('7658', 'Stratus Hotels and Complexs : Omni Harbor Island', 'po@omniharbor.example', 980.0, 6000, 0),
+    cust(
+      '7658',
+      'Stratus Hotels and Complexs : Omni Harbor Island',
+      'po@omniharbor.example',
+      980.0,
+      6000,
+      0,
+    ),
   ];
 }
 
@@ -144,7 +166,10 @@ function seedItems(): Item[] {
   return [
     inv('13828', 'Site Placard Token - Gold/Zinc', 7.68, { 'Main Warehouse': 1200, Vista: 300 }),
     svc('13828-DIE', 'Site Placard Token Setup Charge', 45),
-    inv('12110', 'Custom Site Placard - 100lb Uncoated', 0.0516, { 'Main Warehouse': 50000, Marlow: 20000 }),
+    inv('12110', 'Custom Site Placard - 100lb Uncoated', 0.0516, {
+      'Main Warehouse': 50000,
+      Marlow: 20000,
+    }),
     inv('12103', 'Custom Site Placard - 80lb Matte', 0.0492, { Marlow: 26000 }),
     inv('13020', 'Custom Metal Layout Marker', 2.19, { 'Main Warehouse': 800 }),
     inv('13028', 'Metal Marking Flags', 1.95, { 'Main Warehouse': 5400, Vista: 1000 }),
@@ -204,8 +229,22 @@ function seedTransactions(s: Store): void {
     memo: 'Original order.',
     status: 'Billed',
     lines: [
-      { sku: '13028', description: 'Metal Marking Flags', qty: 200, rate: 1.95, amount: 390, priceLevel: '10_Retail' },
-      { sku: '13020', description: 'Custom Metal Layout Marker', qty: 50, rate: 2.19, amount: 109.5, priceLevel: '10_Retail' },
+      {
+        sku: '13028',
+        description: 'Metal Marking Flags',
+        qty: 200,
+        rate: 1.95,
+        amount: 390,
+        priceLevel: '10_Retail',
+      },
+      {
+        sku: '13020',
+        description: 'Custom Metal Layout Marker',
+        qty: 50,
+        rate: 2.19,
+        amount: 109.5,
+        priceLevel: '10_Retail',
+      },
     ],
     subtotal: 499.5,
     total: 499.5,

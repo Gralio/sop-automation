@@ -24,10 +24,19 @@
           <tr><th>Type</th><th>Record</th></tr>
         </thead>
         <tbody>
-          <tr class="line-row"><td>Sales Order</td><td><a href="/salesorder/SO500123">SO500123</a></td></tr>
-          <tr class="line-row"><td>Invoice</td><td><a href="/invoice/INV62210">INV62210</a></td></tr>
-          <tr class="line-row"><td>Customer</td><td><a href="/customer/9098">9098 Mirage Springs Complex Casino</a></td></tr>
-          <tr class="line-row"><td>Customer</td><td><a href="/customer/5129">5129 THE Builders OF NEVADA</a></td></tr>
+          <tr class="line-row"
+            ><td>Sales Order</td><td><a href="/salesorder/SO500123">SO500123</a></td></tr
+          >
+          <tr class="line-row"><td>Invoice</td><td><a href="/invoice/INV62210">INV62210</a></td></tr
+          >
+          <tr class="line-row"
+            ><td>Customer</td><td
+              ><a href="/customer/9098">9098 Mirage Springs Complex Casino</a></td
+            ></tr
+          >
+          <tr class="line-row"
+            ><td>Customer</td><td><a href="/customer/5129">5129 THE Builders OF NEVADA</a></td></tr
+          >
         </tbody>
       </table>
     </section>

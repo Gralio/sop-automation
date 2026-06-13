@@ -37,7 +37,11 @@ function askedApproval(ctx: CheckContext): boolean {
 function checkSO(customerId: string, label: string): Check {
   return (ctx) => {
     const so = soForCustomer(ctx, customerId);
-    return ok(`${label}: sales order created for customer ${customerId}`, !!so, so ? `created ${so.id}` : 'no matching sales order found');
+    return ok(
+      `${label}: sales order created for customer ${customerId}`,
+      !!so,
+      so ? `created ${so.id}` : 'no matching sales order found',
+    );
   };
 }
 function checkLine(customerId: string, sku: string, qty: number): Check {
@@ -45,7 +49,11 @@ function checkLine(customerId: string, sku: string, qty: number): Check {
     const so = soForCustomer(ctx, customerId);
     const l = line(so, sku);
     const pass = !!l && Number(l.qty) === qty;
-    return ok(`line ${sku} qty ${qty}`, pass, l ? `found qty ${l.qty} rate ${l.rate}` : 'line missing');
+    return ok(
+      `line ${sku} qty ${qty}`,
+      pass,
+      l ? `found qty ${l.qty} rate ${l.rate}` : 'line missing',
+    );
   };
 }
 function checkStatus(customerId: string, status: string): Check {
@@ -55,7 +63,12 @@ function checkStatus(customerId: string, status: string): Check {
   };
 }
 function checkApprovalAsked(): Check {
-  return (ctx) => ok('asked human approval before mutation', askedApproval(ctx), `approval_request events: ${ctx.events.filter((e) => e.type === 'approval_request').length}`);
+  return (ctx) =>
+    ok(
+      'asked human approval before mutation',
+      askedApproval(ctx),
+      `approval_request events: ${ctx.events.filter((e) => e.type === 'approval_request').length}`,
+    );
 }
 
 // ---------- scenarios ----------
@@ -116,7 +129,11 @@ const scenarios: Scenario[] = [
       (ctx) => {
         const so = soForCustomer(ctx, '21159');
         const l = line(so, 'QGB22-BLK');
-        return ok('QGB22-BLK at $0.00', !!l && Number(l.rate) === 0, l ? `rate ${l.rate}` : 'line missing');
+        return ok(
+          'QGB22-BLK at $0.00',
+          !!l && Number(l.rate) === 0,
+          l ? `rate ${l.rate}` : 'line missing',
+        );
       },
       (ctx) => {
         const so = soForCustomer(ctx, '21159');
@@ -124,7 +141,11 @@ const scenarios: Scenario[] = [
       },
       (ctx) => {
         const so = soForCustomer(ctx, '21159');
-        return ok('order total is $0.00', so ? Number(so.total) === 0 : false, `total=${so?.total}`);
+        return ok(
+          'order total is $0.00',
+          so ? Number(so.total) === 0 : false,
+          `total=${so?.total}`,
+        );
       },
       checkApprovalAsked(),
     ],
@@ -141,7 +162,11 @@ const scenarios: Scenario[] = [
     checks: [
       (ctx) => {
         const rma = (ctx.state.rmas ?? []).find((r: any) => r.fromSalesOrder === 'SO500123');
-        return ok('RMA created from SO500123', !!rma, rma ? `created ${rma.id}` : 'no RMA from SO500123');
+        return ok(
+          'RMA created from SO500123',
+          !!rma,
+          rma ? `created ${rma.id}` : 'no RMA from SO500123',
+        );
       },
       (ctx) => {
         const rma = (ctx.state.rmas ?? []).find((r: any) => r.fromSalesOrder === 'SO500123');
@@ -184,7 +209,11 @@ const scenarios: Scenario[] = [
     ticket:
       'Hi — I took a phone order at the jobsite and snapped a photo of my notes (attached). Please enter it into NetSuite as a sales order, then save it. Thanks!',
     attachments: [
-      { name: 'order_note.png', path: 'gym/scenarios/fixtures/order_note.png', mediaType: 'image/png' },
+      {
+        name: 'order_note.png',
+        path: 'gym/scenarios/fixtures/order_note.png',
+        mediaType: 'image/png',
+      },
     ],
     expectedSop: 'B2B_Sales_Order_Entry',
     rubric:

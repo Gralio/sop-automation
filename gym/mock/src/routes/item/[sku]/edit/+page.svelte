@@ -97,7 +97,12 @@
 <div class="ns-toolbar">
   <button class="ns-btn primary" name="save" onclick={save} disabled={busy}>Save</button>
   <div style="position:relative; display:inline-block">
-    <button class="ns-btn" name="actions" onclick={() => (showActions = !showActions)} disabled={busy}>Actions ▾</button>
+    <button
+      class="ns-btn"
+      name="actions"
+      onclick={() => (showActions = !showActions)}
+      disabled={busy}>Actions ▾</button
+    >
     {#if showActions}
       <div class="ns-suggest" style="min-width:160px">
         <div class="row" role="button" tabindex="0" onclick={updateMatrix}>
@@ -157,7 +162,11 @@
 {/if}
 
 {#if toast}
-  <div class="ns-toast {toast.kind === 'ok' ? 'ok' : ''}" role="alert" onclick={() => (toast = null)}>
+  <div
+    class="ns-toast {toast.kind === 'ok' ? 'ok' : ''}"
+    role="alert"
+    onclick={() => (toast = null)}
+  >
     {toast.msg}
   </div>
 {/if}

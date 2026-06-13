@@ -1,6 +1,13 @@
 <script lang="ts">
   import { goto } from '$app/navigation';
-  import { FORMS, SOURCES, LOCATIONS, ORDER_STATUSES, PRICE_LEVELS, isSpecialOrder } from '$lib/vocab';
+  import {
+    FORMS,
+    SOURCES,
+    LOCATIONS,
+    ORDER_STATUSES,
+    PRICE_LEVELS,
+    isSpecialOrder,
+  } from '$lib/vocab';
 
   let { data } = $props();
 
@@ -61,7 +68,8 @@
     const c = data.customer;
     if (!c) return;
     const w: Warn[] = [];
-    if (c.daysOverdue > 0) w.push({ title: 'Warning', msg: `Customer is ${c.daysOverdue} days overdue` });
+    if (c.daysOverdue > 0)
+      w.push({ title: 'Warning', msg: `Customer is ${c.daysOverdue} days overdue` });
     if (c.balance > c.creditLimit)
       w.push({
         title: 'Warning',
@@ -113,7 +121,8 @@
       toast = { kind: 'err', msg: `No item matches "${addSku}".` };
       return null;
     }
-    const rate = addPriceLevel === 'Custom' ? Number(addRate) : rateFor(it.sku, addPriceLevel, addQty);
+    const rate =
+      addPriceLevel === 'Custom' ? Number(addRate) : rateFor(it.sku, addPriceLevel, addQty);
     return {
       sku: it.sku,
       description: it.name,
@@ -134,7 +143,10 @@
     if (!it.isService && line.qty > avail) {
       // NetSuite-style availability warning; OK acknowledges and adds anyway.
       pendingLine = line;
-      pendingWarn = { title: 'Warning', msg: `${it.sku} ${it.name}: You have only ${avail} available` };
+      pendingWarn = {
+        title: 'Warning',
+        msg: `${it.sku} ${it.name}: You have only ${avail} available`,
+      };
       return;
     }
     commitLine(line);
@@ -222,15 +234,23 @@
 
 <h1 class="ns-title">Sales Order <span class="ns-muted">To Be Generated</span></h1>
 {#if data.customer}
-  <div class="ns-subtitle">Customer: <strong>{data.customer.display}</strong> · Terms {data.customer.terms}</div>
+  <div class="ns-subtitle">
+    Customer: <strong>{data.customer.display}</strong> · Terms {data.customer.terms}
+  </div>
 {:else}
-  <div class="ns-banner">No customer selected. Open a customer record and click “Create Sales Order”.</div>
+  <div class="ns-banner">
+    No customer selected. Open a customer record and click “Create Sales Order”.
+  </div>
 {/if}
 
 <div class="ns-toolbar">
-  <button class="ns-btn primary" onclick={save} disabled={saving}>{saving ? 'Saving…' : 'Save'}</button>
+  <button class="ns-btn primary" onclick={save} disabled={saving}
+    >{saving ? 'Saving…' : 'Save'}</button
+  >
   <button class="ns-btn" onclick={() => history.back()}>Cancel</button>
-  <button class="ns-btn" onclick={() => (toast = { kind: 'ok', msg: 'Tax calculated.' })}>Calculate Tax</button>
+  <button class="ns-btn" onclick={() => (toast = { kind: 'ok', msg: 'Tax calculated.' })}
+    >Calculate Tax</button
+  >
   <button class="ns-btn">Validate Bill To Address</button>
   <button class="ns-btn">Validate Ship To Address</button>
 </div>
@@ -290,13 +310,15 @@
             <th style="width:130px">Price Level</th>
             <th style="width:90px">Rate</th>
             <th style="width:100px">Amount</th>
-            {#if isSpecialOrder(form)}<th>Imprint Text</th><th style="width:110px">Imprint Color</th>{/if}
+            {#if isSpecialOrder(form)}<th>Imprint Text</th><th style="width:110px">Imprint Color</th
+              >{/if}
           </tr>
         </thead>
         <tbody>
           {#each lines as l, i (i)}
             <tr class="line-row">
-              <td><button class="ns-btn" onclick={() => removeLine(i)} title="Remove">✕</button></td>
+              <td><button class="ns-btn" onclick={() => removeLine(i)} title="Remove">✕</button></td
+              >
               <td>{l.sku} : {l.description}</td>
               <td>{l.qty}</td>
               <td>{l.priceLevel}</td>
@@ -326,7 +348,16 @@
                 </div>
               {/if}
             </td>
-            <td><input class="ns-input" name="addQty" type="number" min="1" bind:value={addQty} onfocus={(e) => e.currentTarget.select()} /></td>
+            <td
+              ><input
+                class="ns-input"
+                name="addQty"
+                type="number"
+                min="1"
+                bind:value={addQty}
+                onfocus={(e) => e.currentTarget.select()}
+              /></td
+            >
             <td>
               <select class="ns-select" name="addPriceLevel" bind:value={addPriceLevel}>
                 {#each PRICE_LEVELS as p (p)}<option>{p}</option>{/each}
@@ -347,13 +378,16 @@
             <td></td>
             {#if isSpecialOrder(form)}
               <td><input class="ns-input" name="addImprintText" bind:value={addImprintText} /></td>
-              <td><input class="ns-input" name="addImprintColor" bind:value={addImprintColor} /></td>
+              <td><input class="ns-input" name="addImprintColor" bind:value={addImprintColor} /></td
+              >
             {/if}
           </tr>
           <tr>
             <td colspan={isSpecialOrder(form) ? 8 : 6}>
               <button class="ns-btn" name="addLine" onclick={addLine}>Add</button>
-              <span class="ns-muted">Set Price Level to “Custom” to type your own rate (e.g. $0.00).</span>
+              <span class="ns-muted"
+                >Set Price Level to “Custom” to type your own rate (e.g. $0.00).</span
+              >
             </td>
           </tr>
         </tbody>
@@ -385,13 +419,19 @@
     <div class="ns-modal">
       <h4>{pendingWarn.title}</h4>
       <div class="msg">{pendingWarn.msg}</div>
-      <div class="actions"><button class="ns-btn primary" onclick={acceptPendingWarn}>OK</button></div>
+      <div class="actions">
+        <button class="ns-btn primary" onclick={acceptPendingWarn}>OK</button>
+      </div>
     </div>
   </div>
 {/if}
 
 {#if toast}
-  <div class="ns-toast {toast.kind === 'ok' ? 'ok' : ''}" role="alert" onclick={() => (toast = null)}>
+  <div
+    class="ns-toast {toast.kind === 'ok' ? 'ok' : ''}"
+    role="alert"
+    onclick={() => (toast = null)}
+  >
     {toast.msg}
   </div>
 {/if}

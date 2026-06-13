@@ -14,7 +14,9 @@
 <div class="ns-subtitle">Customer · {data.kind} · Terms {data.terms}</div>
 
 <div class="ns-toolbar">
-  <button class="ns-btn primary" name="createSalesOrder" onclick={createSalesOrder}>Create Sales Order</button>
+  <button class="ns-btn primary" name="createSalesOrder" onclick={createSalesOrder}
+    >Create Sales Order</button
+  >
   <button class="ns-btn">Edit</button>
   <button class="ns-btn">Actions</button>
 </div>

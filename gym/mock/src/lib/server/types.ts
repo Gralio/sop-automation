@@ -9,12 +9,7 @@ export type Location =
   | 'Fort Worth'
   | 'Carlsbad';
 
-export type PriceLevelName =
-  | '1_Wholesale'
-  | '3_Gold'
-  | '4_Platinum'
-  | '10_Retail'
-  | 'Custom';
+export type PriceLevelName = '1_Wholesale' | '3_Gold' | '4_Platinum' | '10_Retail' | 'Custom';
 
 /** Quantity-break pricing: qty threshold -> unit price. */
 export type PriceBreaks = Record<string, number>;

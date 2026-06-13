@@ -3,6 +3,9 @@
  * translating the SDK message stream into normalized WorkerEvents and gating
  * mutations through the host's approval callback.
  */
+import { cp, mkdir, mkdtemp } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { dirname, join } from 'node:path';
 import { query } from '@anthropic-ai/claude-agent-sdk';
 import type {
   Options,
@@ -10,7 +13,7 @@ import type {
   SDKUserMessage,
   PermissionResult,
 } from '@anthropic-ai/claude-agent-sdk';
-import type { RunWorkerOptions, RunWorkerResult, WorkerHost } from './contract.js';
+import type { Attachment, RunWorkerOptions, RunWorkerResult, WorkerHost } from './contract.js';
 import { buildSystemPrompt } from './prompt.js';
 import { buildInitialContent } from './attachments.js';
 import {
@@ -50,18 +53,35 @@ export async function runWorker(
   opts: RunWorkerOptions,
   host: WorkerHost,
 ): Promise<RunWorkerResult> {
-  const attachments = opts.attachments ?? [];
   const abortController = new AbortController();
   if (opts.abortSignal) {
     if (opts.abortSignal.aborted) abortController.abort();
     else opts.abortSignal.addEventListener('abort', () => abortController.abort(), { once: true });
   }
 
+  // ── Isolation ──────────────────────────────────────────────────────────
+  // Run inside a fresh throwaway directory in the OS temp area, never the
+  // caller's repo. Copy the SOP catalog (and any attachments) into it so the
+  // worker reads them from a neutral location and has no clue where its own
+  // code — or the real SOP catalog — lives. cwd + the only readable directory
+  // are this temp dir, so Read/Glob/Grep cannot escape it.
+  const runDir = await mkdtemp(join(opts.workDir ?? tmpdir(), 'sop-run-'));
+  const runSopDir = join(runDir, 'sops');
+  await cp(opts.sopDir, runSopDir, { recursive: true });
+
+  const attachments: Attachment[] = [];
+  for (const a of opts.attachments ?? []) {
+    const dest = join(runDir, 'attachments', a.name);
+    await mkdir(dirname(dest), { recursive: true });
+    await cp(a.path, dest);
+    attachments.push({ ...a, path: dest });
+  }
+
   let sopPath: string | undefined;
   const toolCtx: WorkerToolsContext = {
     browser: opts.browser,
-    workDir: opts.workDir,
-    sopDir: opts.sopDir,
+    workDir: runDir,
+    sopDir: runSopDir,
     host,
     onSopSelected: (p) => {
       sopPath = p;
@@ -79,10 +99,12 @@ export async function runWorker(
   }
 
   const options: Options = {
-    systemPrompt: buildSystemPrompt({ sopDir: opts.sopDir, targetUrl: opts.targetUrl }),
+    systemPrompt: buildSystemPrompt({ sopDir: runSopDir, targetUrl: opts.targetUrl }),
     model: opts.model ?? DEFAULT_MODEL,
-    cwd: opts.workDir,
-    additionalDirectories: [opts.sopDir],
+    cwd: runDir,
+    // The isolated temp dir is the ONLY place the worker can read — it contains
+    // the copied SOP catalog and attachments and nothing else.
+    additionalDirectories: [runDir],
     maxTurns: opts.maxTurns ?? DEFAULT_MAX_TURNS,
     // Keep the worker's context clean & generic: no user/project settings, no
     // CLAUDE.md memory leakage, a tight built-in tool set.
